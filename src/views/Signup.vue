@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="signup">
       <h1 id="titulo" class="font-weight-thin">My eCloset</h1>
       <v-container>
         <v-row class="ml-8">
@@ -89,8 +89,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-#titulo{
+#titulo {
   text-align: center;
   margin-top: 10px;
+}
+#signup {
+  background-image: url("../assets/fondo_auth.png");
 }
 </style>
