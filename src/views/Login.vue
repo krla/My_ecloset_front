@@ -1,0 +1,75 @@
+<template>
+  <div>
+    <h1 id="titulo" class="font-weight-thin">My eCloset</h1>
+    <v-container>
+        <v-row class="ml-8">
+          <v-form>
+            <v-text-field label="E-mail" v-model="email" :rules="emailRules" prepend-icon="mdi-email"></v-text-field>
+            <v-text-field
+              label="Password"
+              v-model="userPassword"
+              :type="showPassword ? 'text' : 'password'"
+              prepend-icon="mdi-lock"
+              :rules="passwordRule"
+              :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
+              @click:append="showPassword = !showPassword"
+            ></v-text-field>
+          </v-form>
+        </v-row>
+    </v-container>
+      <v-divider></v-divider>
+      <v-card-actions>
+        <v-btn id="button" class="ma-2" color="info" @click="login" >
+          Login
+        </v-btn>
+      </v-card-actions>
+      <v-card-actions>
+        <v-btn  to="/signup" id="button" class="ma-2" color="info">
+          Ir a Signup
+        </v-btn>
+      </v-card-actions>
+  </div>
+</template>
+
+<script>
+import Api from '../services/Api'
+
+export default {
+  data () {
+    return {
+      showPassword: false,
+      userPassword: '',
+      passwordRule: [
+        v => !!v || 'Password is required',
+        v => v.length >= 10 || 'Password must be more than 10 characters'
+      ],
+      email: '',
+      emailRules: [
+        v => !!v || 'E-mail is required',
+        v => /.+@.+\..+/.test(v) || 'E-mail must be valid'
+      ]
+    }
+  },
+  methods: {
+    login () {
+      const user = {
+        user_email: this.email,
+        user_password: this.userPassword
+      }
+      Api.login(user)
+        .then(response => {
+          localStorage.setItem('token', response.token)
+          this.$router.push('/home')
+        })
+        .catch(err => console.log(err))
+    }
+  }
+}
+</script>
+
+<style lang='scss' scoped>
+#titulo{
+  text-align: center;
+  margin-top: 10px;
+}
+</style>
