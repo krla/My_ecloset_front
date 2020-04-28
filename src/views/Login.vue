@@ -27,7 +27,7 @@
       <v-card-actions>
         <v-btn id="button" color="#13978F" dark @click="login">Login</v-btn>
       </v-card-actions>
-       <p>Si no estás registrado <router-link to="/signup">Pulse aqui</router-link></p>
+       <p>Si no estás registrado <router-link to="/signup">pulse aqui</router-link></p>
     </div>
   </div>
 </template>
