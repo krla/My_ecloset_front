@@ -26,9 +26,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.home {
-  // margin-top: 20vh;
-}
+
 .btn {
   margin-top: 40px;
   width: 110px;

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-img :src="clothObject.img_url" height="100px" width="100px">
+    <v-img :src="clothObject.img_url" height="100px" width="100px" @click="selectthisCloth">
     </v-img>
   </div>
 </template>
@@ -10,7 +10,12 @@
     name: "cloth",
     props:{
       clothObject: Object
+    },
+    methods: {
+    selectthisCloth() {
+      this.$emit("selectCloth", this.clothObject._id)
     }
+  }
   }
 </script>
 

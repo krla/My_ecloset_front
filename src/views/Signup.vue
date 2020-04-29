@@ -1,13 +1,9 @@
 <template>
-  <v-container fill-heigth fluid>
-    <v-row>
-      <v-col align="center">
-        <h1 class="font-weight-thin">My eCloset</h1>
-      </v-col>
-    </v-row>
-    <div class="signup">
-      <v-row>
-        <v-col cols="6" md="6">
+  <div>
+    <h1 class="font-weight-thin" id="title" align="center">My eCloset</h1>
+    <v-container fill-heigth fluid class="signup">
+      <v-row align="center" justify="center">
+        <v-col cols="10" sm="6" md="4" class="bg-transparent">
           <v-form>
             <v-text-field
               label="Nombre de usuario"
@@ -33,35 +29,28 @@
               @click:append="showPassword = !showPassword"
             ></v-text-field>
             <v-radio-group v-model="genderInput">
-              <v-radio
-                v-for="gender in genders"
-                :key="gender"
-                :label="gender"
-                :value="gender"
-              ></v-radio>
+              <v-radio v-for="gender in genders" :key="gender" :label="gender" :value="gender"></v-radio>
             </v-radio-group>
           </v-form>
         </v-col>
       </v-row>
-      <v-row>
-        <v-col>
+      <v-row align="center" justify="center">
+        <v-col cols="10" sm="6" md="4" class="bg-transparent">
           <v-card-actions>
-            <v-btn class="button" color="#13978F" dark @click="signup"
-              >Signup</v-btn
-            >
+            <v-btn class="button" color="#13978F" dark @click="signup">Signup</v-btn>
           </v-card-actions>
         </v-col>
       </v-row>
-      <v-row>
-        <v-col align="center">
+      <v-row align="center" justify="center">
+        <v-col align="center" cols="10" sm="6" md="4" class="bg-transparent">
           <p>
             Si ya estás registrado
-            <router-link to="/">pulse aqui</router-link>
+            <router-link to="/">pulsa aqui</router-link>
           </p>
         </v-col>
       </v-row>
-    </div>
-  </v-container>
+    </v-container>
+  </div>
 </template>
 
 <script>
@@ -108,10 +97,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+#title {
+  margin-top: 5vh;
+}
 .signup {
-  margin: auto;
-  margin-top: 8vh;
-  background-color: rgba(0, 0, 0, 0.1);
+  margin-top: 6vh;
+}
+.bg-transparent {
+  background-color: rgba(255, 255, 255, 0.9);
 }
 .button {
   margin: auto;

@@ -3,7 +3,7 @@
     <h1 class="font-weight-thin" id="title" align="center">My eCloset</h1>
     <v-container fill-heigth fluid class="login">
       <v-row align="center" justify="center">
-        <v-col cols="12" sm="6" md="4" class="bg-transparent">
+        <v-col cols="10" sm="6" md="4" class="bg-transparent">
           <v-form>
             <v-text-field
               label="E-mail"
@@ -25,7 +25,7 @@
       </v-row>
 
       <v-row align="center" justify="center">
-        <v-col cols="12" sm="6" md="4" class="bg-transparent">
+        <v-col cols="10" sm="6" md="4" class="bg-transparent">
           <v-card-actions>
             <v-btn class="button" color="#13978F" dark @click.prevent="login"
               >Login</v-btn
@@ -35,10 +35,10 @@
       </v-row>
 
       <v-row align="center" justify="center">
-        <v-col align="center" cols="12" sm="6" md="4" class="bg-transparent">
+        <v-col align="center" cols="10" sm="6" md="4" class="bg-transparent">
           <p>
             Si no estás registrado
-            <router-link to="/signup">pulse aqui</router-link>
+            <router-link to="/signup">pulsa aqui</router-link>
           </p>
         </v-col>
       </v-row>

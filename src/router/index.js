@@ -7,6 +7,7 @@ import Closet from "../views/Closet.vue";
 import Looks from "../views/Looks.vue";
 import NewLook from "../views/NewLook.vue";
 import Profile from "../views/Profile.vue";
+import AddCloth from '../views/AddCloth.vue';
 
 Vue.use(VueRouter);
 
@@ -93,6 +94,20 @@ const routes = [
       }
     },
   },
+  {
+    path: "/addcloth",
+    name: "AddCloth",
+    component: AddCloth,
+    beforeEnter(to, from, next) {
+      if (!localStorage.getItem("token")) {//eslint-disable-line
+        next({
+          name: "Login",
+        });
+      } else {
+        next();
+      }
+    },
+  }
 ];
 
 const router = new VueRouter({

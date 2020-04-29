@@ -28,5 +28,21 @@ export default {
       }
     })
     return response.data
+  },
+  async addCloth (cloth) {
+    const response = await API.post('/me/clothes', cloth, {
+      headers: {
+        token: localStorage.getItem('token') //eslint-disable-line
+      }
+    })
+    return response.data 
+  },
+  async deleteCloth (clothId) {
+    const response = await API.delete(`/me/clothes/${clothId}`, {
+      headers: {
+        token: localStorage.getItem('token') //eslint-disable-line
+      }
+    })
+    return response.data
   }
 }
