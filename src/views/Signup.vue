@@ -1,9 +1,13 @@
 <template>
-  <div id="signup">
-    <div id="content">
-      <h1 id="titulo" class="font-weight-thin">My eCloset</h1>
-      <v-container id="container">
-        <v-row class="ml-8">
+  <v-container fill-heigth fluid>
+    <v-row>
+      <v-col align="center">
+        <h1 class="font-weight-thin">My eCloset</h1>
+      </v-col>
+    </v-row>
+    <div class="signup">
+      <v-row>
+        <v-col>
           <v-form>
             <v-text-field
               label="Nombre de usuario"
@@ -12,7 +16,12 @@
               :rules="userRules"
             ></v-text-field>
 
-            <v-text-field label="E-mail" v-model="email" :rules="emailRules" prepend-icon="mdi-email"></v-text-field>
+            <v-text-field
+              label="E-mail"
+              v-model="email"
+              :rules="emailRules"
+              prepend-icon="mdi-email"
+            ></v-text-field>
 
             <v-text-field
               label="Password"
@@ -27,14 +36,25 @@
               <v-radio v-for="gender in genders" :key="gender" :label="gender" :value="gender"></v-radio>
             </v-radio-group>
           </v-form>
-        </v-row>
-      </v-container>
-      <v-card-actions>
-        <v-btn id="buttom" color="#13978F" dark @click="signup">Signup</v-btn>
-      </v-card-actions>
-      <p>Si ya estás registrado <router-link to="/">pulse aqui</router-link></p>
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col>
+          <v-card-actions>
+            <v-btn class="button" color="#13978F" dark @click="signup">Signup</v-btn>
+          </v-card-actions>
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col align="center">
+          <p>
+            Si ya estás registrado
+            <router-link to="/">pulse aqui</router-link>
+          </p>
+        </v-col>
+      </v-row>
     </div>
-  </div>
+  </v-container>
 </template>
 
 <script>
@@ -81,25 +101,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-#content {
+.signup {
   margin: auto;
+  margin-top: 8vh;
+  max-width: 80%;
+  background-color: rgba(0, 0, 0, 0.1);
 }
-
-#titulo {
-  text-align: center;
-}
-
-
-#buttom {
+.button {
   margin: auto;
   margin-top: 10px;
-}
-p {
-  text-align: center;
-  margin-top: 10px;
-}
-#container {
-  margin-left: 15px;
-
 }
 </style>
