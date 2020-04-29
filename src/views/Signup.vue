@@ -81,11 +81,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-#signup {
-  background-image: url("../assets/fondo_auth.png");
-  height: 100vh;
-}
-
 #content {
   margin: auto;
 }

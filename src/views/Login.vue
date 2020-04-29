@@ -28,7 +28,7 @@
     <v-row>
       <v-col>
         <v-card-actions>
-          <v-btn class="button" color="#13978F" dark @click="login">Login</v-btn>
+          <v-btn class="button" color="#13978F" dark @click.prevent="login">Login</v-btn>
         </v-card-actions>
       </v-col>
     </v-row>
@@ -71,8 +71,12 @@ export default {
       };
       Api.login(user)
         .then(response => {
-          localStorage.setItem("token", response.token);
-          this.$router.push("/home");
+          if (response.token) {
+            localStorage.setItem("token", response.token);
+            this.$router.push("/home");
+          } else {
+            alert('wrong username or password')
+          }
         })
         .catch(err => console.log(err));
     }
@@ -81,13 +85,6 @@ export default {
 </script>
 
 <style lang='scss' scoped>
-.login {
-  background-image: url("../assets/fondo_auth.png");
-  height: 100vh;
-  width: 100vw;
-  background-size: cover;
-}
-
 .button {
   margin: auto;
   margin-top: 10px;
