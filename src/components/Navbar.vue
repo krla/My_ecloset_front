@@ -1,80 +1,71 @@
 <template>
   <div id="navbar">
-    <v-app id="inspire">
-      <v-navigation-drawer
-        v-model="drawer"
-        app
-        right
-        height="300"
-      >
-        <v-list dense>
-          <v-list-item link>
-            <v-list-item-content>
-              <v-list-item-action><router-link class="link" to="/closet">Mi armario</router-link></v-list-item-action>
-            </v-list-item-content>
+    <v-app-bar color="deep-purple" dark>
+      <v-toolbar-title>Title</v-toolbar-title>
+      <v-spacer></v-spacer>
+      <v-app-bar-nav-icon @click="drawer = true"></v-app-bar-nav-icon>
+    </v-app-bar>
+
+    <v-spacer></v-spacer>
+
+    <v-navigation-drawer v-model="drawer" absolute temporary right>
+      <v-list nav dense>
+        <v-list-item-group active-class="deep-purple--text text--accent-4">
+          <v-list-item>
+            <v-list-item-title>
+              <router-link class="link" to="/closet">Mi armario</router-link>
+            </v-list-item-title>
           </v-list-item>
 
-          <v-list-item link>
-            <v-list-item-content>
-              <v-list-item-action><router-link class="link" to="/looks">Mis looks</router-link></v-list-item-action>
-            </v-list-item-content>
+          <v-list-item>
+            <v-list-item-title>
+              <router-link class="link" to="/looks">Mis looks</router-link>
+            </v-list-item-title>
           </v-list-item>
 
-           <v-list-item link>
-            <v-list-item-content>
-              <v-list-item-action><router-link class="link" to="/newlook">Crear look</router-link></v-list-item-action>
-            </v-list-item-content>
+          <v-list-item>
+            <v-list-item-title>
+              <router-link class="link" to="/newlook">Crear look</router-link>
+            </v-list-item-title>
           </v-list-item>
 
-           <v-list-item link>
-            <v-list-item-content>
-              <v-list-item-action><router-link class="link" to="/profile">Perfil</router-link></v-list-item-action>
-            </v-list-item-content>
+          <v-list-item>
+            <v-list-item-title>
+              <router-link class="link" to="/profile">Mi perfil</router-link>
+            </v-list-item-title>
           </v-list-item>
 
-           <v-list-item link>
-            <v-list-item-content>
+          <v-list-item>
+            <v-list-item-title>
               <v-list-item-action class="link" @click="logOut()">Cerrar sesión</v-list-item-action>
-            </v-list-item-content>
+            </v-list-item-title>
           </v-list-item>
-        </v-list>
-      </v-navigation-drawer>
-
-      <v-app-bar
-        app
-        color="#9E9C9C"
-        dark
-      >
-        <v-spacer />
-
-        <v-toolbar-title></v-toolbar-title>
-
-        <v-spacer />
-
-        <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
-      </v-app-bar>
-    </v-app>
-
+        </v-list-item-group>
+      </v-list>
+    </v-navigation-drawer>
   </div>
 </template>
 
 <script>
-  export default {
-    data: () => ({
-      drawer: null,
-    }),
-    methods:{
-      logOut() {
+export default {
+  data: () => ({
+    drawer: null
+  }),
+  methods: {
+    logOut() {
       localStorage.clear();
       this.$router.push("/");
     }
-    }
   }
+};
 </script>
 
 <style lang="scss" scoped>
 .link {
   text-decoration: none;
-  color: black
+  color: black;
+}
+.v-application--wrap {
+  min-height: 0vh;
 }
 </style>

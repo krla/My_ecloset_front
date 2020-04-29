@@ -1,15 +1,17 @@
 <template>
   <div>
-      <p>soy el armario</p>
+    <p>soy el armario</p>
   </div>
 </template>
 
 <script>
-  export default {
-    
+
+export default {
+  name: "Closet",
+  components: {
   }
+};
 </script>
 
 <style lang="scss" scoped>
-
 </style>
