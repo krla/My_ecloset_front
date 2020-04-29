@@ -1,17 +1,26 @@
 <template>
   <div>
-    <p>soy el armario</p>
+    {{ clothes }}
   </div>
 </template>
 
 <script>
+import Api from "../services/Api";
 
 export default {
   name: "Closet",
-  components: {
+  data() {
+    return {
+      clothes: []
+    };
+  },
+  components: {},
+  created() {
+    Api.getAllClothes().then(res => {
+      this.clothes = res;
+    });
   }
 };
 </script>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>

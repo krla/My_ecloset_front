@@ -20,5 +20,13 @@ export default {
       ...user
     })
     return response.data
+  },
+  async getAllClothes () {
+    const response = await API.get('/me/clothes', {
+      headers: {
+        token: localStorage.getItem('token') //eslint-disable-line
+      }
+    })
+    return response.data
   }
 }

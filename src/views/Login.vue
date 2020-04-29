@@ -90,5 +90,4 @@ export default {
   margin: auto;
   margin-top: 10px;
 }
-
 </style>

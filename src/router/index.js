@@ -1,102 +1,102 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
-import Login from '../views/Login.vue'
-import Signup from '../views/Signup.vue'
-import Closet from '../views/Closet.vue'
-import Looks from '../views/Looks.vue'
-import NewLook from '../views/NewLook.vue'
-import Profile from '../views/Profile.vue'
+import Vue from "vue";
+import VueRouter from "vue-router";
+import Home from "../views/Home.vue";
+import Login from "../views/Login.vue";
+import Signup from "../views/Signup.vue";
+import Closet from "../views/Closet.vue";
+import Looks from "../views/Looks.vue";
+import NewLook from "../views/NewLook.vue";
+import Profile from "../views/Profile.vue";
 
-Vue.use(VueRouter)
+Vue.use(VueRouter);
 
 const routes = [
   {
-    path: '/',
-    name: 'Login',
-    component: Login
+    path: "/",
+    name: "Login",
+    component: Login,
   },
   {
-    path: '/signup',
-    name: 'Signup',
-    component: Signup
+    path: "/signup",
+    name: "Signup",
+    component: Signup,
   },
   {
-    path: '/home',
-    name: 'Home',
+    path: "/home",
+    name: "Home",
     component: Home,
-    beforeEnter (to, from, next) {
-      if (!localStorage.getItem("token")) { //eslint-disable-line
+    beforeEnter(to, from, next) {
+      if (!localStorage.getItem("token")) {//eslint-disable-line
         next({
-          name: 'Login'
-        })
+          name: "Login",
+        });
       } else {
-        next()
+        next();
       }
-    }
+    },
   },
   {
-    path: '/closet',
-    name: 'Closet',
+    path: "/closet",
+    name: "Closet",
     component: Closet,
-    beforeEnter (to, from, next) {
-      if (!localStorage.getItem("token")) { //eslint-disable-line
+    beforeEnter(to, from, next) {
+      if (!localStorage.getItem("token")) {//eslint-disable-line
         next({
-          name: 'Login'
-        })
+          name: "Login",
+        });
       } else {
-        next()
+        next();
       }
-    }
+    },
   },
   {
-    path: '/looks',
-    name: 'Looks',
+    path: "/looks",
+    name: "Looks",
     component: Looks,
-    beforeEnter (to, from, next) {
-      if (!localStorage.getItem("token")) { //eslint-disable-line
+    beforeEnter(to, from, next) {
+      if (!localStorage.getItem("token")) {//eslint-disable-line
         next({
-          name: 'Login'
-        })
+          name: "Login",
+        });
       } else {
-        next()
+        next();
       }
-    }
+    },
   },
   {
-    path: '/newlook',
-    name: 'NewLook',
+    path: "/newlook",
+    name: "NewLook",
     component: NewLook,
-    beforeEnter (to, from, next) {
-      if (!localStorage.getItem("token")) { //eslint-disable-line
+    beforeEnter(to, from, next) {
+      if (!localStorage.getItem("token")) {//eslint-disable-line
         next({
-          name: 'Login'
-        })
+          name: "Login",
+        });
       } else {
-        next()
+        next();
       }
-    }
+    },
   },
   {
-    path: '/profile',
-    name: 'Profile',
+    path: "/profile",
+    name: "Profile",
     component: Profile,
-    beforeEnter (to, from, next) {
-      if (!localStorage.getItem("token")) { //eslint-disable-line
+    beforeEnter(to, from, next) {
+      if (!localStorage.getItem("token")) {//eslint-disable-line
         next({
-          name: 'Login'
-        })
+          name: "Login",
+        });
       } else {
-        next()
+        next();
       }
-    }
-  }
-]
+    },
+  },
+];
 
 const router = new VueRouter({
-  mode: 'history',
+  mode: "history",
   base: process.env.BASE_URL,
-  routes
-})
+  routes,
+});
 
-export default router
+export default router;
