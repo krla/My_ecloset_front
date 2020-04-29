@@ -1,13 +1,9 @@
 <template>
-  <v-container fill-heigth fluid>
-    <v-row>
-      <v-col align="center">
-        <h1 class="font-weight-thin">My eCloset</h1>
-      </v-col>
-    </v-row>
-    <div class="login">
-      <v-row>
-        <v-col>
+  <div>
+    <h1 class="font-weight-thin" id="title" align="center">My eCloset</h1>
+    <v-container fill-heigth fluid class="login">
+      <v-row align="center" justify="center">
+        <v-col cols="12" sm="6" md="4" class="bg-transparent">
           <v-form>
             <v-text-field
               label="E-mail"
@@ -28,24 +24,26 @@
         </v-col>
       </v-row>
 
-      <v-row>
-        <v-col>
+      <v-row align="center" justify="center">
+        <v-col cols="12" sm="6" md="4" class="bg-transparent">
           <v-card-actions>
-            <v-btn class="button" color="#13978F" dark @click.prevent="login">Login</v-btn>
+            <v-btn class="button" color="#13978F" dark @click.prevent="login"
+              >Login</v-btn
+            >
           </v-card-actions>
         </v-col>
       </v-row>
 
-      <v-row>
-        <v-col align="center">
+      <v-row align="center" justify="center">
+        <v-col align="center" cols="12" sm="6" md="4" class="bg-transparent">
           <p>
             Si no estás registrado
             <router-link to="/signup">pulse aqui</router-link>
           </p>
         </v-col>
       </v-row>
-    </div>
-  </v-container>
+    </v-container>
+  </div>
 </template>
 
 <script>
@@ -88,12 +86,15 @@ export default {
 };
 </script>
 
-<style lang='scss' scoped>
+<style lang="scss" scoped>
+#title {
+  margin-top: 5vh;
+}
 .login {
-  margin: auto;
-  margin-top: 12vh;
-  max-width: 80%;
-  background-color: rgba(0, 0, 0, 0.1);
+  margin-top: 6vh;
+}
+.bg-transparent {
+  background-color: rgba(255, 255, 255, 0.9);
 }
 .button {
   margin: auto;

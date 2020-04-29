@@ -7,7 +7,7 @@
     </v-row>
     <div class="signup">
       <v-row>
-        <v-col>
+        <v-col cols="6" md="6">
           <v-form>
             <v-text-field
               label="Nombre de usuario"
@@ -33,7 +33,12 @@
               @click:append="showPassword = !showPassword"
             ></v-text-field>
             <v-radio-group v-model="genderInput">
-              <v-radio v-for="gender in genders" :key="gender" :label="gender" :value="gender"></v-radio>
+              <v-radio
+                v-for="gender in genders"
+                :key="gender"
+                :label="gender"
+                :value="gender"
+              ></v-radio>
             </v-radio-group>
           </v-form>
         </v-col>
@@ -41,7 +46,9 @@
       <v-row>
         <v-col>
           <v-card-actions>
-            <v-btn class="button" color="#13978F" dark @click="signup">Signup</v-btn>
+            <v-btn class="button" color="#13978F" dark @click="signup"
+              >Signup</v-btn
+            >
           </v-card-actions>
         </v-col>
       </v-row>
@@ -104,7 +111,6 @@ export default {
 .signup {
   margin: auto;
   margin-top: 8vh;
-  max-width: 80%;
   background-color: rgba(0, 0, 0, 0.1);
 }
 .button {

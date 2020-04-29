@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <v-container class="home">
     <v-row>
       <v-col align="center">
         <v-btn to="/closet" class="btn" color="#13978F" dark>Mi Armario</v-btn>
@@ -15,7 +15,7 @@
         <v-btn to="/newlook" class="btn" color="#13978F" dark>Crear Look</v-btn>
       </v-col>
     </v-row>
-  </div>
+  </v-container>
 </template>
 
 <script>
@@ -25,9 +25,9 @@ export default {
 };
 </script>
 
-<style lang='scss' scoped>
+<style lang="scss" scoped>
 .home {
-  margin-top: 20vh;
+  // margin-top: 20vh;
 }
 .btn {
   margin-top: 40px;
