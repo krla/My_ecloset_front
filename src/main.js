@@ -3,6 +3,12 @@ import App from './App.vue'
 import router from './router'
 import vuetify from './plugins/vuetify'
 
+import Default from './layouts/Default.Layout.vue'
+import Simple from './layouts/Simple.Layout.vue'
+
+Vue.component('default', Default)
+Vue.component('simple', Simple)
+
 Vue.config.productionTip = false
 
 new Vue({
