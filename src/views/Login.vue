@@ -84,6 +84,8 @@ export default {
 .login {
   background-image: url("../assets/fondo_auth.png");
   height: 100vh;
+  width: 100vw;
+  background-size: cover;
 }
 
 .button {
