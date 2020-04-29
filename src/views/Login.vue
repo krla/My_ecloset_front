@@ -1,46 +1,50 @@
 <template>
-  <v-container class="login" fill-heigth fluid>
+  <v-container fill-heigth fluid>
     <v-row>
       <v-col align="center">
         <h1 class="font-weight-thin">My eCloset</h1>
       </v-col>
     </v-row>
+    <div class="login">
+      <v-row>
+        <v-col>
+          <v-form>
+            <v-text-field
+              label="E-mail"
+              v-model="email"
+              :rules="emailRules"
+              prepend-icon="mdi-email"
+            ></v-text-field>
+            <v-text-field
+              label="Password"
+              v-model="userPassword"
+              :type="showPassword ? 'text' : 'password'"
+              prepend-icon="mdi-lock"
+              :rules="passwordRule"
+              :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
+              @click:append="showPassword = !showPassword"
+            ></v-text-field>
+          </v-form>
+        </v-col>
+      </v-row>
 
-    <v-row>
-      <v-col>
-        <v-form>
-          <v-text-field label="E-mail" v-model="email" :rules="emailRules" prepend-icon="mdi-email"></v-text-field>
-          <v-text-field
-            label="Password"
-            v-model="userPassword"
-            :type="showPassword ? 'text' : 'password'"
-            prepend-icon="mdi-lock"
-            :rules="passwordRule"
-            :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
-            @click:append="showPassword = !showPassword"
-          ></v-text-field>
-        </v-form>
-      </v-col>
-    </v-row>
+      <v-row>
+        <v-col>
+          <v-card-actions>
+            <v-btn class="button" color="#13978F" dark @click.prevent="login">Login</v-btn>
+          </v-card-actions>
+        </v-col>
+      </v-row>
 
-    <v-divider></v-divider>
-
-    <v-row>
-      <v-col>
-        <v-card-actions>
-          <v-btn class="button" color="#13978F" dark @click.prevent="login">Login</v-btn>
-        </v-card-actions>
-      </v-col>
-    </v-row>
-
-    <v-row>
-      <v-col align="center">
-        <p>
-          Si no estás registrado
-          <router-link to="/signup">pulse aqui</router-link>
-        </p>
-      </v-col>
-    </v-row>
+      <v-row>
+        <v-col align="center">
+          <p>
+            Si no estás registrado
+            <router-link to="/signup">pulse aqui</router-link>
+          </p>
+        </v-col>
+      </v-row>
+    </div>
   </v-container>
 </template>
 
@@ -75,7 +79,7 @@ export default {
             localStorage.setItem("token", response.token);
             this.$router.push("/home");
           } else {
-            alert('wrong username or password')
+            alert("wrong username or password");
           }
         })
         .catch(err => console.log(err));
@@ -85,6 +89,12 @@ export default {
 </script>
 
 <style lang='scss' scoped>
+.login {
+  margin: auto;
+  margin-top: 12vh;
+  max-width: 80%;
+  background-color: rgba(0, 0, 0, 0.1);
+}
 .button {
   margin: auto;
   margin-top: 10px;
