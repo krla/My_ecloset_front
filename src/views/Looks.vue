@@ -1,21 +1,23 @@
 <template>
   <div>
     <div v-if="looks">
-      <v-carousel cycle continuous progress color="#DDD" height="80vh;">
-        <v-carousel-item  v-for="(look, idx) in looks" :key="idx">
-          <v-sheet color="white">
-            <Look  :look="look" />
-          </v-sheet>
-        </v-carousel-item>
-      </v-carousel>
+      <v-container >
+        <v-row align="center" justify="center">
+          <v-col cols="12" sm="6" md="4" v-for="(look, idx) in looks" :key="idx">
+              <Look  :look="look" />
+          </v-col>
+        </v-row>
+      </v-container>
     </div>
     <div v-else>
       <h2>No tienes looks, añade uno!</h2>
     </div>
 
-    <v-btn fab dark id="addBtn" color="#13978F" to="/addcloth">
-      <v-icon>mdi-plus</v-icon>
-    </v-btn>
+    <v-col align="center">
+      <v-btn fab dark color="#13978F" to="/addcloth">
+        <v-icon>mdi-plus</v-icon>
+      </v-btn>
+    </v-col>
   </div>
 </template>
 
@@ -25,8 +27,7 @@ import Look from '@/components/LookCard.vue'
 export default {
   data () {
     return {
-      looks: [],
-      bottomNav: 'addCloth'
+      looks: []
     }
   },
   components: {
@@ -41,10 +42,4 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
-#addBtn {
-  position: absolute;
-  left: 20px;
-  bottom: 20px;
-}
 </style>
