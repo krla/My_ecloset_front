@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <h1 class="font-weight-thin" id="title" align="center">My eCloset</h1>
+  <div class="bg-simple">
+    <h1 class="font-weight-thin" align="center">My eCloset</h1>
     <v-container fill-heigth fluid class="login">
       <v-row align="center" justify="center">
         <v-col cols="10" sm="6" md="4" class="bg-transparent">
@@ -87,8 +87,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-#title {
-  margin-top: 5vh;
+.bg-simple {
+  background-image: url("../assets/fondo_auth.png");
+  height: 100vh;
+  width: 100vw;
+  background-size: cover;
 }
 .login {
   margin-top: 6vh;
