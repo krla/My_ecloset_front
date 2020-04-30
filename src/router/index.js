@@ -28,6 +28,7 @@ const routes = [
     path: "/home",
     name: "Home",
     component: Home,
+    meta: { appBarTitle: "Inicio" },
     beforeEnter(to, from, next) {
       if (!localStorage.getItem("token")) {//eslint-disable-line
         next({

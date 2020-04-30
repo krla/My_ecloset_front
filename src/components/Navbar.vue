@@ -1,14 +1,14 @@
 <template>
   <div id="navbar">
     <v-app-bar color="#9E9C9C" dark>
-      <v-toolbar-title>Titulo de la pagina</v-toolbar-title>
+      <v-toolbar-title>{{ this.$route.meta.appBarTitle || "My eCloset"}}</v-toolbar-title>
       <v-spacer></v-spacer>
       <v-app-bar-nav-icon @click="drawer = true"></v-app-bar-nav-icon>
     </v-app-bar>
 
     <v-spacer></v-spacer>
 
-    <v-navigation-drawer v-model="drawer" absolute  right>
+    <v-navigation-drawer v-model="drawer" absolute  right app temporary>
       <v-list nav dense>
         <v-list-item-group active-class="deep-purple--text text--accent-4">
           <v-list-item>
