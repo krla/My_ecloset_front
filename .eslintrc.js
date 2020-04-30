@@ -1,14 +1,31 @@
 module.exports = {
-  root: true,
-  env: {
-    node: true
+  "root": true,
+  "env": {
+    "browser": true,
+    "commonjs": true,
+    "es6": true,
+    "node": true
   },
-  extends: ["plugin:vue/essential", "eslint:recommended", "@vue/prettier"],
-  parserOptions: {
-    parser: "babel-eslint"
+  "parserOptions": {
+    "parser": "babel-eslint",
+    "sourceType": "module"
   },
-  rules: {
-    "no-console": process.env.NODE_ENV === "production" ? "warn" : "off",
-    "no-debugger": process.env.NODE_ENV === "production" ? "warn" : "off"
+  // https://github.com/feross/standard/blob/master/RULES.md#javascript-standard-style
+  "extends": [
+    "standard",
+    "plugin:vue/essential"
+  ],
+  // required to lint *.vue files
+  "plugins": [
+    "vue"
+  ],
+  "rules": {
+    "no-const-assign": "warn",
+    "no-this-before-super": "warn",
+    "no-undef": "warn",
+    "no-unreachable": "warn",
+    "no-unused-vars": "warn",
+    "constructor-super": "warn",
+    "valid-typeof": "warn"
   }
 };
