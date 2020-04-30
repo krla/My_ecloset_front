@@ -16,10 +16,10 @@
             <v-expand-transition>
               <div
                 v-if="hover"
-                class="d-flex transition-fast-in-fast-out teal lighten-4 v-card--reveal display-3 black--text"
+                class="d-flex transition-fast-in-fast-out blue-grey lighten-4 v-card--reveal display-3 black--text"
                 style="height: 100%;"
               >
-                <v-btn dark color="#13978F" to="/closet">Mi armario</v-btn>
+                <v-btn dark color="blue-grey" to="/closet">Mi armario</v-btn>
               </div>
             </v-expand-transition>
             </v-img>
@@ -42,10 +42,10 @@
             <v-expand-transition>
               <div
                 v-if="hover"
-                class="d-flex transition-fast-in-fast-out teal lighten-4 v-card--reveal display-3 black--text"
+                class="d-flex transition-fast-in-fast-out blue-grey lighten-4 v-card--reveal display-3 black--text"
                 style="height: 100%;"
               >
-                <v-btn dark color="#13978F" to="/looks">Mis looks</v-btn>
+                <v-btn dark color="blue-grey" to="/looks">Mis looks</v-btn>
               </div>
             </v-expand-transition>
             </v-img>
@@ -65,11 +65,10 @@ export default {
 
 <style lang="scss" scoped>
 .home {
-  background-image: url("../assets/fondo_auth.png");
+  background-color: #E5E5E5;
   height: 100vh;
   width: 100vw;
   background-size: cover;
-  opacity: 0.8;
 }
 .v-card--reveal {
   align-items: center;

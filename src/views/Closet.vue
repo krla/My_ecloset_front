@@ -1,7 +1,24 @@
 <template>
-  <div>
+  <div class="closet">
     <v-card style="height: 700px;">
       <v-container>
+        <v-row>
+          <v-col cols="9" sm="6" md="4">
+            <v-autocomplete
+            v-model="types"
+            :items="clothesTypes"
+            outlined
+            dense
+            chips
+            small-chips
+            label=""
+            multiple
+            ></v-autocomplete>
+          </v-col>
+          <v-col cols="2">
+            <v-btn @click="filterclothes()"><v-icon>mdi-magnify</v-icon></v-btn>
+          </v-col>
+        </v-row>
         <v-row>
           <v-col v-for="(cloth, idx) in clothes" :key="idx">
             <Cloth :clothObject="cloth" v-on:selectCloth="deleteCloth" />
@@ -9,17 +26,12 @@
         </v-row>
       </v-container>
     </v-card>
-
-    <v-card color="#9E9C9C">
-      <v-card-text style="height: 100px; position: relative">
-        <v-btn absolute dark fab top left color="#13978F" to="/addcloth">
-          <v-icon>mdi-plus</v-icon>
-        </v-btn>
-        <v-btn absolute dark fab top right color="#13978F" @click="deleteClothId()" :disabled="showRemove">
-          <v-icon>mdi-delete</v-icon>
-        </v-btn>
-      </v-card-text>
-    </v-card>
+    <v-btn dark fab class="BtnPlus" color="#13978F" to="/addcloth">
+      <v-icon>mdi-plus</v-icon>
+    </v-btn>
+    <v-btn dark fab class="BtnDelete" color="red" @click="deleteClothId()" :disabled="showRemove">
+      <v-icon>mdi-delete</v-icon>
+    </v-btn>
   </div>
 </template>
 
@@ -32,7 +44,9 @@ export default {
   data () {
     return {
       clothes: [],
-      clothToRemove: []
+      clothToRemove: [],
+      clothesTypes: ['blusas', 'camisetas', 'chaqueta', 'abrigo', 'rebecas', 'jersey', 'pullover', 'vaqueros', 'pantalon', 'falda', 'vestido', 'short', 'zapatos', 'camisa', 'polo', 'sombrero', 'otros'],
+      types: []
     }
   },
   computed: {
@@ -63,9 +77,33 @@ export default {
           this.clothes = res
         })
       })
+    },
+    filterclothes () {
+      if (this.types) {
+        Api.getClothesByType(this.types).then(res => {
+          this.clothes = res
+        }
+        )
+      } else {
+        Api.getAllClothes().then(res => {
+          this.clothes = res
+        })
+      }
     }
   }
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.BtnPlus {
+  position: absolute;
+  left: 20px;
+  bottom: 20px;
+}
+.BtnDelete {
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+}
+
+</style>
