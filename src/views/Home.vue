@@ -1,18 +1,56 @@
 <template>
   <v-container class="home">
-    <v-row>
-      <v-col align="center">
-        <v-btn to="/closet" class="btn" color="#13978F" dark>Mi Armario</v-btn>
+    <h1 class="font-weight-thin" id="title" align="center">My eCloset</h1>
+    <v-row class="mt-5" align="center" justify="center" >
+      <v-col cols="11" sm="6" md="4">
+        <v-hover v-slot:default="{ hover }">
+          <v-card
+            class="mx-auto"
+            color="grey lighten-4"
+            max-width="600"
+          >
+            <v-img
+              :aspect-ratio="16/9"
+              src="../assets/armario.jpg"
+            >
+            <v-expand-transition>
+              <div
+                v-if="hover"
+                class="d-flex transition-fast-in-fast-out teal lighten-4 v-card--reveal display-3 black--text"
+                style="height: 100%;"
+              >
+                <v-btn dark color="#13978F" to="/closet">Mi armario</v-btn>
+              </div>
+            </v-expand-transition>
+            </v-img>
+          </v-card>
+        </v-hover>
       </v-col>
     </v-row>
-    <v-row>
-      <v-col align="center">
-        <v-btn to="/looks" class="btn" color="#13978F" dark>Looks</v-btn>
-      </v-col>
-    </v-row>
-    <v-row>
-      <v-col align="center">
-        <v-btn to="/newlook" class="btn" color="#13978F" dark>Crear Look</v-btn>
+    <v-row class="mt-5" align="center" justify="center">
+      <v-col cols="11" sm="6" md="4">
+        <v-hover v-slot:default="{ hover }">
+          <v-card
+            class="mx-auto"
+            color="grey lighten-4"
+            max-width="600"
+          >
+            <v-img
+              :aspect-ratio="16/9"
+              src="../assets/looks.jpg"
+            >
+            <v-expand-transition>
+              <div
+                v-if="hover"
+                class="d-flex transition-fast-in-fast-out teal lighten-4 v-card--reveal display-3 black--text"
+                style="height: 100%;"
+              >
+                <v-btn dark color="#13978F" to="/looks">Mis looks</v-btn>
+              </div>
+            </v-expand-transition>
+            </v-img>
+          </v-card>
+        </v-hover>
       </v-col>
     </v-row>
   </v-container>
@@ -26,10 +64,20 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
-.btn {
-  margin-top: 40px;
-  width: 110px;
-  height: 50px;
+.home {
+  background-image: url("../assets/fondo_auth.png");
+  height: 100vh;
+  width: 100vw;
+  background-size: cover;
+  opacity: 0.8;
 }
+.v-card--reveal {
+  align-items: center;
+  bottom: 0;
+  justify-content: center;
+  opacity: 0.8;
+  position: absolute;
+  width: 100%;
+}
+
 </style>

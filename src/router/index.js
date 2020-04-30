@@ -27,8 +27,8 @@ const routes = [
   {
     path: '/home',
     name: 'Home',
+    meta: { layout: 'simple' },
     component: Home,
-    meta: { appBarTitle: 'Inicio' },
     beforeEnter (to, from, next) {
       if (!localStorage.getItem("token")) {//eslint-disable-line
         next({
@@ -43,6 +43,7 @@ const routes = [
     path: '/closet',
     name: 'Closet',
     component: Closet,
+    meta: { appBarTitle: 'Mi armario' },
     beforeEnter (to, from, next) {
       if (!localStorage.getItem("token")) {//eslint-disable-line
         next({
@@ -57,6 +58,7 @@ const routes = [
     path: '/looks',
     name: 'Looks',
     component: Looks,
+    meta: { appBarTitle: 'Mis Looks' },
     beforeEnter (to, from, next) {
       if (!localStorage.getItem("token")) {//eslint-disable-line
         next({
@@ -71,6 +73,7 @@ const routes = [
     path: '/newlook',
     name: 'NewLook',
     component: NewLook,
+    meta: { appBarTitle: 'Nuevo look' },
     beforeEnter (to, from, next) {
       if (!localStorage.getItem("token")) {//eslint-disable-line
         next({
@@ -85,6 +88,7 @@ const routes = [
     path: '/profile',
     name: 'Profile',
     component: Profile,
+    meta: { appBarTitle: 'Perfil' },
     beforeEnter (to, from, next) {
       if (!localStorage.getItem("token")) {//eslint-disable-line
         next({
@@ -99,6 +103,7 @@ const routes = [
     path: '/addcloth',
     name: 'AddCloth',
     component: AddCloth,
+    meta: { appBarTitle: 'Añadir prenda' },
     beforeEnter (to, from, next) {
       if (!localStorage.getItem("token")) {//eslint-disable-line
         next({

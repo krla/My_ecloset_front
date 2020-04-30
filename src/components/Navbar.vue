@@ -11,6 +11,12 @@
     <v-navigation-drawer v-model="drawer" absolute  right app temporary>
       <v-list nav dense>
         <v-list-item-group active-class="deep-purple--text text--accent-4">
+            <v-list-item>
+            <v-list-item-title>
+              <router-link class="link" to="/home">Inicio</router-link>
+            </v-list-item-title>
+          </v-list-item>
+
           <v-list-item>
             <v-list-item-title>
               <router-link class="link" to="/closet">Mi armario</router-link>
@@ -20,12 +26,6 @@
           <v-list-item>
             <v-list-item-title>
               <router-link class="link" to="/looks">Mis looks</router-link>
-            </v-list-item-title>
-          </v-list-item>
-
-          <v-list-item>
-            <v-list-item-title>
-              <router-link class="link" to="/newlook">Crear look</router-link>
             </v-list-item-title>
           </v-list-item>
 
