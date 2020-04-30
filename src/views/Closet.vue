@@ -1,6 +1,6 @@
 <template>
   <div class="closet">
-    <v-card style="height: 700px;">
+    <v-card>
       <v-container>
         <v-row>
           <v-col cols="9" sm="6" md="4">
@@ -21,7 +21,7 @@
         </v-row>
         <v-row>
           <v-col v-for="(cloth, idx) in clothes" :key="idx">
-            <Cloth :clothObject="cloth" v-on:selectCloth="deleteCloth" />
+            <Cloth class="ml-5" :clothObject="cloth" v-on:selectCloth="deleteCloth" />
           </v-col>
         </v-row>
       </v-container>
