@@ -52,12 +52,12 @@ export default {
     drawer: null
   }),
   methods: {
-    logOut() {
-      localStorage.clear();
-      this.$router.push("/");
+    logOut () {
+      localStorage.clear()
+      this.$router.push('/')
     }
   }
-};
+}
 </script>
 
 <style lang="scss" scoped>

@@ -6,17 +6,17 @@
 </template>
 
 <script>
-  export default {
-    name: "cloth",
-    props:{
-      clothObject: Object
-    },
-    methods: {
-    selectthisCloth() {
-      this.$emit("selectCloth", this.clothObject._id)
+export default {
+  name: 'cloth',
+  props: {
+    clothObject: Object
+  },
+  methods: {
+    selectthisCloth () {
+      this.$emit('selectCloth', this.clothObject._id)
     }
   }
-  }
+}
 </script>
 
 <style lang="scss" scoped>

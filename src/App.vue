@@ -6,12 +6,12 @@
 
 <script>
 export default {
-  name: "App",
+  name: 'App',
 
   computed: {
-    layout() {
+    layout () {
       return (this.$route.meta.layout || 'default')
     }
   }
-};
+}
 </script>

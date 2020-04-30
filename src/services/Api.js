@@ -35,7 +35,7 @@ export default {
         token: localStorage.getItem('token') //eslint-disable-line
       }
     })
-    return response.data 
+    return response.data
   },
   async deleteCloth (clothId) {
     const response = await API.delete(`/me/clothes/${clothId}`, {

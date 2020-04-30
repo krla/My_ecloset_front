@@ -54,46 +54,46 @@
 </template>
 
 <script>
-import Api from "../services/Api";
+import Api from '../services/Api'
 
 export default {
-  data() {
+  data () {
     return {
       showPassword: false,
-      userPassword: "",
+      userPassword: '',
       passwordRule: [
-        v => !!v || "Password is required",
-        v => v.length >= 10 || "Password must be more than 10 characters"
+        v => !!v || 'Password is required',
+        v => v.length >= 10 || 'Password must be more than 10 characters'
       ],
-      username: "",
-      userRules: [v => !!v || "Username is required"],
-      email: "",
+      username: '',
+      userRules: [v => !!v || 'Username is required'],
+      email: '',
       emailRules: [
-        v => !!v || "E-mail is required",
-        v => /.+@.+\..+/.test(v) || "E-mail must be valid"
+        v => !!v || 'E-mail is required',
+        v => /.+@.+\..+/.test(v) || 'E-mail must be valid'
       ],
-      genderInput: "Mujer",
-      genders: ["Mujer", "Hombre"]
-    };
+      genderInput: 'Mujer',
+      genders: ['Mujer', 'Hombre']
+    }
   },
   methods: {
-    signup() {
+    signup () {
       const newUser = {
         user_name: this.username,
         user_email: this.email,
         user_password: this.userPassword,
         user_gender: this.genderInput
-      };
+      }
 
       Api.signup(newUser)
         .then(response => {
-          localStorage.setItem("token", response.token);
-          this.$router.push("/home");
+          localStorage.setItem('token', response.token)
+          this.$router.push('/home')
         })
-        .catch(err => console.log(err));
+        .catch(err => console.log(err))
     }
   }
-};
+}
 </script>
 
 <style lang="scss" scoped>

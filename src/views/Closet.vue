@@ -24,38 +24,38 @@
 </template>
 
 <script>
-import Api from "../services/Api";
-import Cloth from "../components/ClothCard";
+import Api from '../services/Api'
+import Cloth from '../components/ClothCard'
 
 export default {
-  name: "Closet",
-  data() {
+  name: 'Closet',
+  data () {
     return {
       clothes: [],
-      clothId:null
-    };
+      clothId: null
+    }
   },
   components: {
     Cloth
   },
-  created() {
+  created () {
     Api.getAllClothes().then(res => {
-      this.clothes = res;
-    });
+      this.clothes = res
+    })
   },
-   methods: {
-    deleteCloth(clothId) {
-      this.clothId = clothId 
+  methods: {
+    deleteCloth (clothId) {
+      this.clothId = clothId
     },
-    deleteClothId() {
+    deleteClothId () {
       Api.deleteCloth(this.clothId).then(() => {
         Api.getAllClothes().then(res => {
-          this.clothes = res;
-        });
-      });
+          this.clothes = res
+        })
+      })
     }
   }
-};
+}
 </script>
 
 <style lang="scss" scoped></style>

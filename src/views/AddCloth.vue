@@ -36,53 +36,53 @@
 </template>
 
 <script>
-import Api from '../services/Api';
+import Api from '../services/Api'
 
 export default {
   data: () => ({
     valid: true,
-    name: "",
-    nameRules: [v => !!v || "Se requiere un nombre para la prenda"],
-    img: "",
-    imgRules: [v => !!v || "Se requiere una imagen de la prenda"],
+    name: '',
+    nameRules: [v => !!v || 'Se requiere un nombre para la prenda'],
+    img: '',
+    imgRules: [v => !!v || 'Se requiere una imagen de la prenda'],
     type: null,
     types: [
-      "blusas",
-      "camisetas",
-      "chaqueta",
-      "abrigo",
-      "rebecas",
-      "jersey",
-      "pullover",
-      "vaqueros",
-      "pantalon",
-      "falda",
-      "vestido",
-      "short",
-      "zapatos",
-      "camisa",
-      "polo",
-      "sombrero",
-      "otros"
+      'blusas',
+      'camisetas',
+      'chaqueta',
+      'abrigo',
+      'rebecas',
+      'jersey',
+      'pullover',
+      'vaqueros',
+      'pantalon',
+      'falda',
+      'vestido',
+      'short',
+      'zapatos',
+      'camisa',
+      'polo',
+      'sombrero',
+      'otros'
     ],
     season: null,
-    seasons: ["primavera-verano", "otoño-invierno", "todas"]
+    seasons: ['primavera-verano', 'otoño-invierno', 'todas']
   }),
 
   methods: {
-    addCloth() {
+    addCloth () {
       const cloth = {
-         name: this.name,
-         img_url: this.img,
-         cloth_type: this.type,
-         season: this.season
+        name: this.name,
+        img_url: this.img,
+        cloth_type: this.type,
+        season: this.season
       }
       Api.addCloth(cloth).then(() => {
-        this.$router.push("/closet");
-      });
+        this.$router.push('/closet')
+      })
     }
   }
-};
+}
 </script>
 
 <style lang="scss" scoped>
