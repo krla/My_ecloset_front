@@ -26,6 +26,7 @@ module.exports = {
     'no-unreachable': 'warn',
     'no-unused-vars': 'warn',
     'constructor-super': 'warn',
-    'valid-typeof': 'warn'
+    'valid-typeof': 'warn',
+    'no-debugger': 'warn'
   }
 }

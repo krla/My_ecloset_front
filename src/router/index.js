@@ -57,6 +57,7 @@ const routes = [
     path: '/looks',
     name: 'Looks',
     component: Looks,
+    meta: { appBarTitle: 'Mis Looks' },
     beforeEnter (to, from, next) {
       if (!localStorage.getItem("token")) {//eslint-disable-line
         next({

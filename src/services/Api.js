@@ -37,8 +37,18 @@ export default {
     })
     return response.data
   },
-  async deleteCloth (clothId) {
-    const response = await API.delete(`/me/clothes/${clothId}`, {
+  async deleteCloth (clothes) {
+    clothes.map(async clothId => {
+      const response = await API.delete(`/me/clothes/${clothId}`, {
+        headers: {
+          token: localStorage.getItem('token')
+        }
+      })
+      return response.data
+    })
+  },
+  async getAllLooks () {
+    const response = await API.get('/me/looks', {
       headers: {
         token: localStorage.getItem('token') //eslint-disable-line
       }

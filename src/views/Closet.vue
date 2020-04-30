@@ -15,7 +15,7 @@
         <v-btn absolute dark fab top left color="#13978F" to="/addcloth">
           <v-icon>mdi-plus</v-icon>
         </v-btn>
-        <v-btn absolute dark fab top right color="#13978F" @click="deleteClothId()">
+        <v-btn absolute dark fab top right color="#13978F" @click="deleteClothId()" :disabled="showRemove">
           <v-icon>mdi-delete</v-icon>
         </v-btn>
       </v-card-text>
@@ -32,7 +32,12 @@ export default {
   data () {
     return {
       clothes: [],
-      clothId: null
+      clothToRemove: []
+    }
+  },
+  computed: {
+    showRemove () {
+      return this.clothToRemove.length === 0
     }
   },
   components: {
@@ -45,10 +50,15 @@ export default {
   },
   methods: {
     deleteCloth (clothId) {
-      this.clothId = clothId
+      const idx = this.clothToRemove.findIndex(id => id === clothId)
+      if (idx === -1) {
+        this.clothToRemove.push(clothId)
+      } else {
+        this.clothToRemove.splice(idx, 1)
+      }
     },
     deleteClothId () {
-      Api.deleteCloth(this.clothId).then(() => {
+      Api.deleteCloth(this.clothToRemove).then(() => {
         Api.getAllClothes().then(res => {
           this.clothes = res
         })
