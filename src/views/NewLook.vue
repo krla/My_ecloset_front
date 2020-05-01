@@ -11,6 +11,7 @@
     </v-row>
     <v-row align="center" justify="center">
       <v-col cols="10" sm="6" md="4">
+        <h3 class="font-weight-thin" align="center" justify="center">Una vez le des a guardar, verás la tarjeta del look creada. Dale al botón editar y podrás añadir o eliminar cuantas prendas y accesorios quieras, enjoy!</h3>
         <v-card-actions>
           <v-btn :disabled="!valid" dark color="#13978F" class="button" @click="createLook()">Guardar</v-btn>
         </v-card-actions>
@@ -33,7 +34,7 @@ export default {
         name: this.name
       }
       Api.createLook(look).then(() => {
-        this.$router.push('/canvasnewlook')
+        this.$router.push('/looks')
       })
     }
   }
