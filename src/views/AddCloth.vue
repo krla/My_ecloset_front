@@ -1,5 +1,7 @@
 <template>
   <div>
+    <h1 class="font-weight-thin" align="center">Mi armario</h1>
+    <h3 class="font-weight-thin" align="center" justify="center">Guarda tu nueva prenda o accesorio</h3>
     <v-row align="center" justify="center">
       <v-col cols="10" sm="6" md="4">
         <v-form ref="form" v-model="valid" lazy-validation>

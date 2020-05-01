@@ -1,19 +1,48 @@
 <template>
   <div>
-    <v-card class="ma-8" id="card"  light elevation="0"  height="60vh">
-      <v-card-title class="headline mb-5 margin text-center cardTitle">
-        {{ look.name }}
+    <v-card>
+      <v-card-title class="title">
+        {{look.name}}
       </v-card-title>
-      <v-card-text class="d-flex">
-        <v-img  v-for="(cloth, idx) in look.clothes" :key="idx" :src="cloth.img_url" height="100px" width="100px" class="mb-6"></v-img>
-        <v-btn fab dark id="deleteBtn" color="red">
-          <v-icon>mdi-delete</v-icon>
-        </v-btn>
-        <v-btn fab dark id="editBtn" color="#13978F">
-          <v-icon>mdi-pencil</v-icon>
-        </v-btn>
-      </v-card-text>
-    </v-card>
+        <v-container fluid>
+          <v-row>
+            <v-col
+              v-for="(cloth, idx) in look.clothes"
+              :key="idx"
+              class="d-flex child-flex"
+              cols="6"
+            >
+              <v-card flat tile class="d-flex">
+                <v-img
+                  :src="cloth.img_url"
+                  aspect-ratio="1"
+                  class="grey lighten-2"
+                >
+                  <template v-slot:placeholder>
+                    <v-row
+                      class="fill-height ma-0"
+                      align="center"
+                      justify="center"
+                    >
+                      <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
+                    </v-row>
+                  </template>
+                </v-img>
+              </v-card>
+            </v-col>
+          </v-row>
+        </v-container>
+        <v-card-actions>
+          <v-btn small fab dark id="deleteBtn" color="red" @click="deleteLook()">
+            <v-icon>mdi-delete</v-icon>
+          </v-btn>
+        </v-card-actions>
+        <v-card-actions>
+          <v-btn small fab dark id="editBtn" color="#13978F">
+            <v-icon>mdi-pencil</v-icon>
+          </v-btn>
+        </v-card-actions>
+      </v-card>
   </div>
 </template>
 
@@ -22,23 +51,29 @@ export default {
   name: 'cloth',
   props: {
     look: Object
+  },
+  methods: {
+    deleteLook () {
+      this.$emit('deleteLook', this.look._id)
+    }
+
   }
 }
 </script>
 
 <style lang="scss" scoped>
-.cardTitle {
-  background-color:#13978F;
+.title{
+  background-color: #13978F;
   color: white;
 }
 #deleteBtn {
   position: absolute;
-  left: 10px;
+  left: 100px;
   bottom: 20px;
 }
 #editBtn {
   position: absolute;
-  right: 10px;
+  right: 100px;
   bottom: 20px;
 }
 </style>
