@@ -1,5 +1,7 @@
 <template>
   <div class="closet">
+    <h1 class="font-weight-thin" align="center">Mi armario</h1>
+    <h3 class="font-weight-thin" align="center" justify="center">Disfruta de tu vestidor virtual</h3>
     <v-card>
       <v-container>
         <v-row>
@@ -16,7 +18,7 @@
             ></v-autocomplete>
           </v-col>
           <v-col cols="2">
-            <v-btn @click="filterclothes()"><v-icon>mdi-magnify</v-icon></v-btn>
+            <v-btn><v-icon>mdi-magnify</v-icon></v-btn>
           </v-col>
         </v-row>
         <v-row>
@@ -26,10 +28,10 @@
         </v-row>
       </v-container>
     </v-card>
-    <v-btn dark fab class="BtnPlus" color="#13978F" to="/addcloth">
+    <v-btn fixed dark fab class="BtnPlus" color="#13978F" to="/addcloth">
       <v-icon>mdi-plus</v-icon>
     </v-btn>
-    <v-btn dark fab class="BtnDelete" color="red" @click="deleteClothId()" :disabled="showRemove">
+    <v-btn fixed dark fab class="BtnDelete" color="red" @click="deleteClothId()" :disabled="showRemove">
       <v-icon>mdi-delete</v-icon>
     </v-btn>
   </div>
@@ -77,18 +79,6 @@ export default {
           this.clothes = res
         })
       })
-    },
-    filterclothes () {
-      if (this.types) {
-        Api.getClothesByType(this.types).then(res => {
-          this.clothes = res
-        }
-        )
-      } else {
-        Api.getAllClothes().then(res => {
-          this.clothes = res
-        })
-      }
     }
   }
 }
@@ -96,12 +86,10 @@ export default {
 
 <style lang="scss" scoped>
 .BtnPlus {
-  position: absolute;
   left: 20px;
   bottom: 20px;
 }
 .BtnDelete {
-  position: absolute;
   right: 20px;
   bottom: 20px;
 }

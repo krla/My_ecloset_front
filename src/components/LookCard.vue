@@ -33,12 +33,12 @@
           </v-row>
         </v-container>
         <v-card-actions>
-          <v-btn fab dark id="deleteBtn" color="red">
+          <v-btn small fab dark id="deleteBtn" color="red" @click="deleteLook()">
             <v-icon>mdi-delete</v-icon>
           </v-btn>
         </v-card-actions>
         <v-card-actions>
-          <v-btn fab dark id="editBtn" color="#13978F">
+          <v-btn small fab dark id="editBtn" color="#13978F">
             <v-icon>mdi-pencil</v-icon>
           </v-btn>
         </v-card-actions>
@@ -51,6 +51,12 @@ export default {
   name: 'cloth',
   props: {
     look: Object
+  },
+  methods: {
+    deleteLook () {
+      this.$emit('deleteLook', this.look._id)
+    }
+
   }
 }
 </script>
@@ -62,12 +68,12 @@ export default {
 }
 #deleteBtn {
   position: absolute;
-  left: 10px;
+  left: 100px;
   bottom: 20px;
 }
 #editBtn {
   position: absolute;
-  right: 10px;
+  right: 100px;
   bottom: 20px;
 }
 </style>

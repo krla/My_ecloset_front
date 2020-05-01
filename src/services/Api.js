@@ -47,19 +47,24 @@ export default {
       return response.data
     })
   },
-  async getClothesByType (types) {
-    console.log(types)
-    types.map(async type => {
-      const response = await API.get(`/me/clothes?cloth_type=${type}`, {
-        headers: {
-          token: localStorage.getItem('token') //eslint-disable-line
-        }
-      })
-      return response.data
-    })
-  },
   async getAllLooks () {
     const response = await API.get('/me/looks', {
+      headers: {
+        token: localStorage.getItem('token') //eslint-disable-line
+      }
+    })
+    return response.data
+  },
+  async createLook (look) {
+    const response = await API.post('/me/looks', look, {
+      headers: {
+        token: localStorage.getItem('token') //eslint-disable-line
+      }
+    })
+    return response.data
+  },
+  async deleteLook (lookId) {
+    const response = await API.delete(`/me/looks/${lookId}`, {
       headers: {
         token: localStorage.getItem('token') //eslint-disable-line
       }

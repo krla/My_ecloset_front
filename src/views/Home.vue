@@ -1,58 +1,64 @@
 <template>
   <v-container class="home">
     <h1 class="font-weight-thin" id="title" align="center">My eCloset</h1>
-    <v-row class="mt-5" align="center" justify="center" >
-      <v-col cols="11" sm="6" md="4">
-        <v-hover v-slot:default="{ hover }">
-          <v-card
-            class="mx-auto"
-            color="grey lighten-4"
-            max-width="600"
-          >
-            <v-img
-              :aspect-ratio="16/9"
-              src="../assets/armario.jpg"
+    <v-card elevation="10" color="#E5E5E5">
+      <h3 class="font-weight-thin mt-10" align="center" justify="center">Accede a tu armario para ver todas tus prendas y accesorios, o añadir uno nuevo</h3>
+      <v-row class="mt-2" align="center" justify="center" >
+        <v-col cols="11" sm="6" md="4">
+          <v-hover v-slot:default="{ hover }">
+            <v-card
+              class="mx-auto"
+              color="grey lighten-4"
+              max-width="600"
             >
-            <v-expand-transition>
-              <div
-                v-if="hover"
-                class="d-flex transition-fast-in-fast-out blue-grey lighten-4 v-card--reveal display-3 black--text"
-                style="height: 100%;"
+              <v-img
+                :aspect-ratio="16/9"
+                src="../assets/armario.jpg"
               >
-                <v-btn dark color="blue-grey" to="/closet">Mi armario</v-btn>
-              </div>
-            </v-expand-transition>
-            </v-img>
-          </v-card>
-        </v-hover>
-      </v-col>
-    </v-row>
-    <v-row class="mt-5" align="center" justify="center">
-      <v-col cols="11" sm="6" md="4">
-        <v-hover v-slot:default="{ hover }">
-          <v-card
-            class="mx-auto"
-            color="grey lighten-4"
-            max-width="600"
-          >
-            <v-img
-              :aspect-ratio="16/9"
-              src="../assets/looks.jpg"
+              <v-expand-transition>
+                <div
+                  v-if="hover"
+                  class="d-flex transition-fast-in-fast-out blue-grey lighten-4 v-card--reveal display-3 black--text"
+                  style="height: 100%;"
+                >
+                  <v-btn dark color="blue-grey" to="/closet">Mi armario</v-btn>
+                </div>
+              </v-expand-transition>
+              </v-img>
+            </v-card>
+          </v-hover>
+        </v-col>
+      </v-row>
+    </v-card>
+    <v-card elevation="10" color="#E5E5E5">
+      <h3 class="font-weight-thin mt-10" align="center" justify="center">Accede a tu looks guardados o crea uno</h3>
+      <v-row class="mt-2" align="center" justify="center">
+        <v-col cols="11" sm="6" md="4">
+          <v-hover v-slot:default="{ hover }">
+            <v-card
+              class="mx-auto"
+              color="grey lighten-4"
+              max-width="600"
             >
-            <v-expand-transition>
-              <div
-                v-if="hover"
-                class="d-flex transition-fast-in-fast-out blue-grey lighten-4 v-card--reveal display-3 black--text"
-                style="height: 100%;"
+              <v-img
+                :aspect-ratio="16/9"
+                src="../assets/looks.jpg"
               >
-                <v-btn dark color="blue-grey" to="/looks">Mis looks</v-btn>
-              </div>
-            </v-expand-transition>
-            </v-img>
-          </v-card>
-        </v-hover>
-      </v-col>
-    </v-row>
+              <v-expand-transition>
+                <div
+                  v-if="hover"
+                  class="d-flex transition-fast-in-fast-out blue-grey lighten-4 v-card--reveal display-3 black--text"
+                  style="height: 100%;"
+                >
+                  <v-btn dark color="blue-grey" to="/looks">Mis looks</v-btn>
+                </div>
+              </v-expand-transition>
+              </v-img>
+            </v-card>
+          </v-hover>
+        </v-col>
+      </v-row>
+    </v-card>
   </v-container>
 </template>
 

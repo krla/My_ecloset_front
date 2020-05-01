@@ -8,6 +8,7 @@ import Looks from '../views/Looks.vue'
 import NewLook from '../views/NewLook.vue'
 import Profile from '../views/Profile.vue'
 import AddCloth from '../views/AddCloth.vue'
+import CanvasNewLook from '../views/CanvasNewLook.vue'
 
 Vue.use(VueRouter)
 
@@ -43,7 +44,6 @@ const routes = [
     path: '/closet',
     name: 'Closet',
     component: Closet,
-    meta: { appBarTitle: 'Mi armario' },
     beforeEnter (to, from, next) {
       if (!localStorage.getItem("token")) {//eslint-disable-line
         next({
@@ -58,7 +58,6 @@ const routes = [
     path: '/looks',
     name: 'Looks',
     component: Looks,
-    meta: { appBarTitle: 'Mis Looks' },
     beforeEnter (to, from, next) {
       if (!localStorage.getItem("token")) {//eslint-disable-line
         next({
@@ -73,7 +72,20 @@ const routes = [
     path: '/newlook',
     name: 'NewLook',
     component: NewLook,
-    meta: { appBarTitle: 'Nuevo look' },
+    beforeEnter (to, from, next) {
+      if (!localStorage.getItem("token")) {//eslint-disable-line
+        next({
+          name: 'Login'
+        })
+      } else {
+        next()
+      }
+    }
+  },
+  {
+    path: '/canvasnewlook',
+    name: 'CanvasNewLook',
+    component: CanvasNewLook,
     beforeEnter (to, from, next) {
       if (!localStorage.getItem("token")) {//eslint-disable-line
         next({

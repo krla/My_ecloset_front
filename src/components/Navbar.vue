@@ -1,7 +1,10 @@
 <template>
   <div id="navbar">
     <v-app-bar color="#9E9C9C" dark app>
-      <v-toolbar-title>{{ this.$route.meta.appBarTitle || "My eCloset"}}</v-toolbar-title>
+      <v-btn icon>
+        <v-icon>mdi-chevron-left</v-icon>
+      </v-btn>
+      <v-toolbar-title>My eCloset</v-toolbar-title>
       <v-spacer></v-spacer>
       <v-app-bar-nav-icon @click="drawer = true"></v-app-bar-nav-icon>
     </v-app-bar>
