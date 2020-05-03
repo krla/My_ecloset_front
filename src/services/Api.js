@@ -21,8 +21,14 @@ export default {
     })
     return response.data
   },
-  async getAllClothes () {
-    const response = await API.get('/me/clothes', {
+  async getAllClothes (types) {
+    let url = '/me/clothes?'
+    if (types) {
+      types.forEach(elem => {
+        url += `cloth_type=${elem}&`
+      })
+    }
+    const response = await API.get(url, {
       headers: {
         token: localStorage.getItem('token') //eslint-disable-line
       }
@@ -70,8 +76,15 @@ export default {
       }
     })
     return response.data
+  },
+  async getOneLook (lookId) {
+    const response = await API.get(`/me/looks/${lookId}`, {
+      headers: {
+        token: localStorage.getItem('token') //eslint-disable-line
+      }
+    })
+    return response.data
   }
 }
-
 // Abel:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImIiLCJlbWFpbCI6ImJAYi5jb20iLCJpYXQiOjE1ODgxMDM3OTYsImV4cCI6MTU4ODcwODU5Nn0.JLjISK0VNDfeEEaskhDolC8-yaIYulJx3-dyJfHm5zk//
 // Carla:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFhIiwiZW1haWwiOiJhYUBhYS5jb20iLCJpYXQiOjE1ODgyODE1OTksImV4cCI6MTU5MDg3MzU5OX0.cL8wub8pRu0Vjy70T8IgyPA1nO9HtPmTDHEH6AfGRSE//

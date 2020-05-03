@@ -1,7 +1,7 @@
 <template>
   <div class="closet">
     <h1 class="font-weight-thin" align="center">Mi armario</h1>
-    <h3 class="font-weight-thin" align="center" justify="center">Disfruta de tu vestidor virtual</h3>
+    <h3 class="font-weight-thin" align="center" justify="center">Elige las prendas y accesorios que desea agregar a su look</h3>
     <v-card>
       <v-container>
         <v-row>
@@ -15,7 +15,6 @@
             small-chips
             label=""
             multiple
-            @change="filterClothesByType()"
             ></v-autocomplete>
           </v-col>
           <v-col cols="2">
@@ -24,16 +23,13 @@
         </v-row>
         <v-row>
           <v-col v-for="(cloth, idx) in clothes" :key="idx">
-            <Cloth class="ml-5" :clothObject="cloth" v-on:selectCloth="deleteCloth" />
+            <Cloth class="ml-5" :clothObject="cloth"/>
           </v-col>
         </v-row>
       </v-container>
     </v-card>
-    <v-btn fixed dark fab class="BtnPlus" color="#13978F" to="/addcloth">
+    <v-btn fixed dark fab class="BtnPlus" color="#13978F" @click="$router.go(-1)">
       <v-icon>mdi-plus</v-icon>
-    </v-btn>
-    <v-btn fixed dark fab class="BtnDelete" color="red" @click="deleteClothId()" :disabled="showRemove">
-      <v-icon>mdi-delete</v-icon>
     </v-btn>
   </div>
 </template>
@@ -47,14 +43,8 @@ export default {
   data () {
     return {
       clothes: [],
-      clothToRemove: [],
       clothesTypes: ['blusas', 'camisetas', 'chaqueta', 'abrigo', 'rebecas', 'jersey', 'pullover', 'vaqueros', 'pantalon', 'falda', 'vestido', 'short', 'zapatos', 'camisa', 'polo', 'sombrero', 'otros'],
       types: []
-    }
-  },
-  computed: {
-    showRemove () {
-      return this.clothToRemove.length === 0
     }
   },
   components: {
@@ -66,21 +56,6 @@ export default {
     })
   },
   methods: {
-    deleteCloth (clothId) {
-      const idx = this.clothToRemove.findIndex(id => id === clothId)
-      if (idx === -1) {
-        this.clothToRemove.push(clothId)
-      } else {
-        this.clothToRemove.splice(idx, 1)
-      }
-    },
-    deleteClothId () {
-      Api.deleteCloth(this.clothToRemove).then(() => {
-        Api.getAllClothes().then(res => {
-          this.clothes = res
-        })
-      })
-    },
     filterClothesByType () {
       Api.getAllClothes(this.types).then(res => {
         this.clothes = res
@@ -93,10 +68,6 @@ export default {
 <style lang="scss" scoped>
 .BtnPlus {
   left: 20px;
-  bottom: 20px;
-}
-.BtnDelete {
-  right: 20px;
   bottom: 20px;
 }
 

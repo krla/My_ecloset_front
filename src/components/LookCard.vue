@@ -38,7 +38,7 @@
           </v-btn>
         </v-card-actions>
         <v-card-actions>
-          <v-btn small fab dark id="editBtn" color="#13978F">
+          <v-btn small fab dark id="editBtn" color="#13978F" @click="editLook()">
             <v-icon>mdi-pencil</v-icon>
           </v-btn>
         </v-card-actions>
@@ -55,8 +55,10 @@ export default {
   methods: {
     deleteLook () {
       this.$emit('deleteLook', this.look._id)
+    },
+    editLook () {
+      this.$router.push(`/EditLook/${this.look._id}`)
     }
-
   }
 }
 </script>

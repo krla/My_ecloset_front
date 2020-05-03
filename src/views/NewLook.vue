@@ -33,8 +33,8 @@ export default {
       const look = {
         name: this.name
       }
-      Api.createLook(look).then(() => {
-        this.$router.push('/looks')
+      Api.createLook(look).then((newLook) => {
+        this.$router.push(`/editlook/${newLook._id}`)
       })
     }
   }
