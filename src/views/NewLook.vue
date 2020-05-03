@@ -11,7 +11,11 @@
     </v-row>
     <v-row align="center" justify="center">
       <v-col cols="10" sm="6" md="4">
-        <h3 class="font-weight-thin" align="center" justify="center">Una vez le des a guardar, verás la tarjeta del look creada. Dale al botón editar y podrás añadir o eliminar cuantas prendas y accesorios quieras, enjoy!</h3>
+        <h3 class="font-weight-thin" align="center" justify="center">Una vez le des a guardar, verás la tarjeta del look creada. Podrás añadir o eliminar cuantas prendas y accesorios quieras, enjoy!</h3>
+      </v-col>
+    </v-row>
+    <v-row align="center" justify="center">
+      <v-col>
         <v-card-actions>
           <v-btn :disabled="!valid" dark color="#13978F" class="button" @click="createLook()">Guardar</v-btn>
         </v-card-actions>
@@ -43,5 +47,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.button {
+  margin: auto;
+  margin-top: 10px;
+}
 
 </style>
