@@ -19,7 +19,7 @@
         </v-row>
         <v-row>
           <v-col v-for="(cloth, idx) in clothes" :key="idx">
-            <Cloth class="ml-5" :clothObject="cloth" v-on:selectCloth="addClothToLook" />
+            <Cloth class="ml-5" :clothObject="cloth" :isSelected="isClothSelected[idx]" v-on:selectCloth="addClothToLook" />
           </v-col>
         </v-row>
       </v-container>
@@ -40,10 +40,18 @@ export default {
     }
   },
   props: {
-    clothes: Array
+    clothes: Array,
+    selectedClothes: Array
   },
   components: {
     Cloth
+  },
+  computed: {
+    isClothSelected () {
+      return this.clothes.map(e => {
+        return !!this.selectedClothes.includes(e._id)
+      })
+    }
   },
   methods: {
     addClothToLook (cloth) {

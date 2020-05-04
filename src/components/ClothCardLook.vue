@@ -10,11 +10,12 @@ export default {
   name: 'cloth',
   data () {
     return {
-      selected: false
+      selected: this.isSelected
     }
   },
   props: {
-    clothObject: Object
+    clothObject: Object,
+    isSelected: Boolean
   },
   methods: {
     selectthisCloth () {

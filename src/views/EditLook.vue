@@ -1,6 +1,23 @@
 <template>
   <div>
-    <v-card>
+    <v-container>
+      <v-row v-if="wardrobe" align="center" justify="center">
+        <v-col align="center">
+          <v-btn @click="openWardrobe()">Abrir armario</v-btn>
+        </v-col>
+      </v-row>
+      <v-row v-else align="center" justify="center">
+        <v-col align="center">
+          <v-btn @click="openWardrobe()">Ver look</v-btn>
+        </v-col>
+      </v-row>
+      <v-row v-show="!wardrobe">
+        <v-col>
+          <LookCloset :clothes="clothes" :selectedClothes="selected" v-on:addCloth="addToLook" />
+        </v-col>
+      </v-row>
+    </v-container>
+    <v-card v-show="wardrobe">
       <v-card-title class="title">
         {{look.name}}
       </v-card-title>
@@ -77,23 +94,7 @@
        </v-row>
       </v-container>
     </v-card>
-    <v-container>
-      <v-row v-if="wardrobe" align="center" justify="center">
-        <v-col align="center">
-          <v-btn @click="openWardrobe()">Abrir armario</v-btn>
-        </v-col>
-      </v-row>
-      <v-row v-else align="center" justify="center">
-        <v-col align="center">
-          <v-btn @click="openWardrobe()">Cerrar armario</v-btn>
-        </v-col>
-      </v-row>
-      <v-row v-show="!wardrobe">
-        <v-col>
-          <LookCloset :clothes="clothes" v-on:addCloth="addToLook" />
-        </v-col>
-      </v-row>
-    </v-container>
+
   </div>
 </template>
 
@@ -106,7 +107,8 @@ export default {
       look: {},
       clothes: [],
       clothToAdd: [],
-      wardrobe: true
+      wardrobe: true,
+      selected: []
     }
   },
   components: {
@@ -127,7 +129,10 @@ export default {
 
   },
   mounted () {
-    Api.getOneLook(this.$route.params.id).then(res => (this.look = res))
+    Api.getOneLook(this.$route.params.id).then(res => {
+      this.look = res
+      this.selected = this.look.clothes.map(cloth => cloth._id)
+    })
   }
 }
 </script>
