@@ -111,6 +111,11 @@ export default {
       this.look.clothes = this.look.clothes.filter(cloth =>
         !this.arrayToDelete.includes(cloth._id))
       this.arrayToDelete = []
+    },
+    editLook () {
+      Api.saveLook(this.look._id, this.look).then(() => {
+        this.$router.push('/looks')
+      })
     }
   }
 }
