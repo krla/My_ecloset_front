@@ -13,7 +13,7 @@
       </v-row>
       <v-row v-show="!wardrobe">
         <v-col>
-          <LookCloset :clothes="clothes" :selectedClothes="selected" v-on:addCloth="addToLook" />
+          <LookCloset :clothes="clothes" :look="look.clothes" v-on:addCloth="addToLook" />
         </v-col>
       </v-row>
     </v-container>
@@ -33,33 +33,8 @@
               <v-img
                 :src="cloth.img_url"
                 aspect-ratio="1"
-                class="grey lighten-2"
-              >
-                <template v-slot:placeholder>
-                  <v-row
-                    class="fill-height ma-0"
-                    align="center"
-                    justify="center"
-                  >
-                    <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
-                  </v-row>
-                </template>
-              </v-img>
-            </v-card>
-          </v-col>
-        </v-row>
-        <v-row>
-          <v-col
-            v-for="(cloth, idx) in clothToAdd"
-            :key="idx"
-            class="d-flex child-flex"
-            cols="6"
-          >
-            <v-card flat tile class="d-flex">
-              <v-img
-                :src="cloth.img_url"
-                aspect-ratio="1"
-                class="grey lighten-2"
+                @click="deleteCloth(cloth._id)"
+                :class="{on: arrayToDelete.includes(cloth._id)}"
               >
                 <template v-slot:placeholder>
                   <v-row
@@ -78,7 +53,7 @@
         <v-row align="center" justify="center">
           <v-col cols="3">
             <v-card-actions>
-             <v-btn small fab dark id="deleteBtn" color="red" @click="deleteLook()">
+             <v-btn small fab dark id="deleteBtn" color="red" @click="deleteClothId()">
                <v-icon>mdi-delete</v-icon>
              </v-btn>
             </v-card-actions>
@@ -94,7 +69,6 @@
        </v-row>
       </v-container>
     </v-card>
-
   </div>
 </template>
 
@@ -106,33 +80,38 @@ export default {
     return {
       look: {},
       clothes: [],
-      clothToAdd: [],
       wardrobe: true,
-      selected: []
+      selectedToDelete: false,
+      arrayToDelete: []
     }
   },
   components: {
     LookCloset
   },
   created () {
-    Api.getAllClothes().then(res => {
-      this.clothes = res
-    })
+    Api.getAllClothes().then(res => { this.clothes = res })
+    Api.getOneLook(this.$route.params.id).then(res => { this.look = res })
   },
   methods: {
     addToLook (clothToAdd) {
-      this.clothToAdd.push(clothToAdd)
+      this.look.clothes.push(clothToAdd)
     },
     openWardrobe () {
       this.wardrobe = !this.wardrobe
+    },
+    deleteCloth (clothId) {
+      const idx = this.arrayToDelete.findIndex(id => id === clothId)
+      if (idx === -1) {
+        this.arrayToDelete.push(clothId)
+      } else {
+        this.arrayToDelete.splice(idx, 1)
+      }
+    },
+    deleteClothId () {
+      this.look.clothes = this.look.clothes.filter(cloth =>
+        !this.arrayToDelete.includes(cloth._id))
+      this.arrayToDelete = []
     }
-
-  },
-  mounted () {
-    Api.getOneLook(this.$route.params.id).then(res => {
-      this.look = res
-      this.selected = this.look.clothes.map(cloth => cloth._id)
-    })
   }
 }
 </script>
@@ -153,5 +132,8 @@ export default {
 #saveBtn {
   position: absolute;
   bottom: 20px;
+}
+.on {
+  border: 1px solid red;
 }
 </style>

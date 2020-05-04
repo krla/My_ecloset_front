@@ -1,6 +1,7 @@
 <template>
   <div>
-    <v-img :src="clothObject.img_url" height="100px" class="clothImg" :class="{on: selected}" width="100px" @click="selectthisCloth">
+    <v-img :src="clothObject.img_url" height="100px" class="clothImg"
+    :class="{on: isSelected || selected}" width="100px" @click="selectthisCloth()">
     </v-img>
   </div>
 </template>
@@ -10,7 +11,7 @@ export default {
   name: 'cloth',
   data () {
     return {
-      selected: this.isSelected
+      selected: false
     }
   },
   props: {
