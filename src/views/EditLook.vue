@@ -1,7 +1,11 @@
 <template>
   <div>
     <h1 class="font-weight-thin" align="center">Edita tu Look</h1>
-    <h3 class="font-weight-thin" align="center" justify="center">Aqui podrás añadir prendas al look desde tu armario, eliminarlas y guardar el look con los cambios realizados </h3>
+    <h3
+      class="font-weight-thin"
+      align="center"
+      justify="center"
+    >Aqui podrás añadir prendas al look desde tu armario, eliminarlas y guardar el look con los cambios realizados</h3>
     <v-container>
       <v-row v-if="wardrobe" align="center" justify="center">
         <v-col align="center">
@@ -20,17 +24,10 @@
       </v-row>
     </v-container>
     <v-card v-show="wardrobe">
-      <v-card-title class="title">
-        {{look.name}}
-      </v-card-title>
+      <v-card-title class="title">{{look.name}}</v-card-title>
       <v-container fluid>
         <v-row>
-          <v-col
-            v-for="(cloth, idx) in look.clothes"
-            :key="idx"
-            class="d-flex child-flex"
-            cols="6"
-          >
+          <v-col v-for="(cloth, idx) in look.clothes" :key="idx" class="d-flex child-flex" cols="6">
             <v-card flat tile class="d-flex">
               <v-img
                 :src="cloth.img_url"
@@ -39,11 +36,7 @@
                 :class="{on: arrayToDelete.includes(cloth._id)}"
               >
                 <template v-slot:placeholder>
-                  <v-row
-                    class="fill-height ma-0"
-                    align="center"
-                    justify="center"
-                  >
+                  <v-row class="fill-height ma-0" align="center" justify="center">
                     <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
                   </v-row>
                 </template>
@@ -51,24 +44,35 @@
             </v-card>
           </v-col>
         </v-row>
-
-        <v-row align="center" justify="center">
+        <v-row justify="center">
           <v-col cols="3">
-            <v-card-actions>
-             <v-btn small fab dark id="deleteBtn" color="red" @click="deleteClothId()">
-               <v-icon>mdi-delete</v-icon>
-             </v-btn>
-            </v-card-actions>
+            <v-dialog v-model="dialog" persistent max-width="290">
+              <template v-slot:activator="{ on }">
+                <v-card-actions>
+                  <v-btn small fab dark id="deleteBtn" color="red" v-on="on">
+                    <v-icon>mdi-delete</v-icon>
+                  </v-btn>
+                </v-card-actions>
+              </template>
+              <v-card>
+                <v-card-title class="headline">¿Estás seguro?</v-card-title>
+                <v-card-text>Eliminarás la prenda</v-card-text>
+                <v-card-actions>
+                  <v-spacer></v-spacer>
+                  <v-btn color="green darken-1" text @click="dialog = false">Cancelar</v-btn>
+                  <v-btn color="green darken-1" text @click="deleteClothId()">Eliminar</v-btn>
+                </v-card-actions>
+              </v-card>
+            </v-dialog>
           </v-col>
-
           <v-col cols="3">
             <v-card-actions>
               <v-btn small fab dark id="saveBtn" color="#13978F" @click="editLook()">
                 <v-icon>mdi-content-save</v-icon>
-             </v-btn>
-           </v-card-actions>
+              </v-btn>
+            </v-card-actions>
           </v-col>
-       </v-row>
+        </v-row>
       </v-container>
     </v-card>
   </div>
@@ -84,15 +88,20 @@ export default {
       clothes: [],
       wardrobe: true,
       selectedToDelete: false,
-      arrayToDelete: []
+      arrayToDelete: [],
+      dialog: false
     }
   },
   components: {
     LookCloset
   },
   created () {
-    Api.getAllClothes().then(res => { this.clothes = res })
-    Api.getOneLook(this.$route.params.id).then(res => { this.look = res })
+    Api.getAllClothes().then(res => {
+      this.clothes = res
+    })
+    Api.getOneLook(this.$route.params.id).then(res => {
+      this.look = res
+    })
   },
   methods: {
     addToLook (clothToAdd) {
@@ -110,9 +119,11 @@ export default {
       }
     },
     deleteClothId () {
-      this.look.clothes = this.look.clothes.filter(cloth =>
-        !this.arrayToDelete.includes(cloth._id))
+      this.look.clothes = this.look.clothes.filter(
+        cloth => !this.arrayToDelete.includes(cloth._id)
+      )
       this.arrayToDelete = []
+      this.dialog = false
     },
     editLook () {
       Api.saveLook(this.look._id, this.look).then(() => {
@@ -124,15 +135,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.title{
-  background-color: #13978F;
+.title {
+  background-color: #13978f;
   color: white;
 }
 #deleteBtn {
-  position: absolute;
-  bottom: 20px;
-}
-#editBtn {
   position: absolute;
   bottom: 20px;
 }

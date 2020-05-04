@@ -29,9 +29,25 @@
     <v-btn fixed dark fab class="BtnPlus" color="#13978F" to="/addcloth">
       <v-icon>mdi-plus</v-icon>
     </v-btn>
-    <v-btn fixed dark fab class="BtnDelete" color="red" @click="deleteClothId()" :disabled="showRemove">
+     <v-row justify="center">
+     <v-dialog v-model="dialog" persistent max-width="290">
+      <template v-slot:activator="{ on }">
+        <v-btn fixed dark fab class="BtnDelete" color="red" v-on="on" :disabled="showRemove">
       <v-icon>mdi-delete</v-icon>
     </v-btn>
+      </template>
+      <v-card>
+        <v-card-title class="headline">¿Estás seguro?</v-card-title>
+        <v-card-text>Eliminarás la prenda de tu armario</v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn color="green darken-1" text @click="dialog = false">Cancelar</v-btn>
+          <v-btn color="green darken-1" text @click="deleteClothId()">Eliminar</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+  </v-row>
+
   </div>
 </template>
 
@@ -46,7 +62,8 @@ export default {
       clothes: [],
       clothToRemove: [],
       clothesTypes: ['Abrigos', 'Blusas', 'Camisas', 'Camisetas', 'Chaquetas', 'Faldas', 'Jerseys', 'Pantalones', 'Polos', 'Pullovers', 'Rebecas', 'Shorts', 'Sombreros', 'Vaqueros', 'Vestidos', 'Zapatos', 'Otros'],
-      types: []
+      types: [],
+      dialog: false
     }
   },
   computed: {
@@ -77,6 +94,7 @@ export default {
           this.clothes = res
         })
       })
+      this.dialog = false
     },
     filterClothesByType () {
       Api.getAllClothes(this.types).then(res => {
