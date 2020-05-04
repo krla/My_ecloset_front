@@ -5,7 +5,7 @@
     <v-card>
       <v-container>
         <v-row>
-          <v-col cols="9" sm="6" md="4">
+          <v-col cols="12" sm="6" md="4">
             <v-autocomplete
             v-model="types"
             :items="clothesTypes"
@@ -13,13 +13,10 @@
             dense
             chips
             small-chips
-            label=""
+            label="Busca por categoría"
             multiple
             @change="filterClothesByType()"
             ></v-autocomplete>
-          </v-col>
-          <v-col cols="2">
-            <v-btn @click="filterClothesByType()"><v-icon>mdi-magnify</v-icon></v-btn>
           </v-col>
         </v-row>
         <v-row>
@@ -48,7 +45,7 @@ export default {
     return {
       clothes: [],
       clothToRemove: [],
-      clothesTypes: ['blusas', 'camisetas', 'chaqueta', 'abrigo', 'rebecas', 'jersey', 'pullover', 'vaqueros', 'pantalon', 'falda', 'vestido', 'short', 'zapatos', 'camisa', 'polo', 'sombrero', 'otros'],
+      clothesTypes: ['Abrigos', 'Blusas', 'Camisas', 'Camisetas', 'Chaquetas', 'Faldas', 'Jerseys', 'Pantalones', 'Polos', 'Pullovers', 'Rebecas', 'Shorts', 'Sombreros', 'Vaqueros', 'Vestidos', 'Zapatos', 'Otros'],
       types: []
     }
   },

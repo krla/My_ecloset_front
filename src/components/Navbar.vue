@@ -2,7 +2,7 @@
   <div id="navbar">
     <v-app-bar color="#9E9C9C" dark app>
       <v-btn icon>
-        <v-icon>mdi-chevron-left</v-icon>
+        <v-icon @click="back()">mdi-chevron-left</v-icon>
       </v-btn>
       <v-toolbar-title>My eCloset</v-toolbar-title>
       <v-spacer></v-spacer>
@@ -57,6 +57,9 @@ export default {
     logOut () {
       localStorage.clear()
       this.$router.push('/')
+    },
+    back () {
+      this.$router.go('-1')
     }
   }
 }

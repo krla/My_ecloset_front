@@ -1,5 +1,7 @@
 <template>
   <div>
+    <h1 class="font-weight-thin" align="center">Edita tu Look</h1>
+    <h3 class="font-weight-thin" align="center" justify="center">Aqui podrás añadir prendas al look desde tu armario, eliminarlas y guardar el look con los cambios realizados </h3>
     <v-container>
       <v-row v-if="wardrobe" align="center" justify="center">
         <v-col align="center">

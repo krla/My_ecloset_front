@@ -12,7 +12,7 @@
               class="d-flex child-flex"
               cols="6"
             >
-              <v-card flat tile class="d-flex">
+              <v-card flat tile class="d-flex" v-if="look.clothes">
                 <v-img
                   :src="cloth.img_url"
                   aspect-ratio="1"
@@ -28,6 +28,9 @@
                     </v-row>
                   </template>
                 </v-img>
+              </v-card>
+              <v-card v-else>
+                 <h3 class="font-weight-thin" align="center" justify="center">Añade prendas a tu look </h3>
               </v-card>
             </v-col>
           </v-row>
