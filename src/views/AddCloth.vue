@@ -7,9 +7,9 @@
         <v-form ref="form" v-model="valid" lazy-validation>
           <v-text-field v-model="name" :rules="nameRules" label="Nombre" required></v-text-field>
 
-          <v-text-field v-model="img" :rules="imgRules" label="Imagen" required></v-text-field>
+          <input type="file" @change="onFileSelected">
 
-          <v-select
+          <v-select class="mt-5"
             v-model="type"
             :items="types"
             :rules="[v => !!v || 'El tipo de prenda es requerido']"
@@ -39,25 +39,40 @@
 
 <script>
 import Api from '../services/Api'
+import firebase from 'firebase'
 
 export default {
   data: () => ({
     valid: true,
     name: '',
     nameRules: [v => !!v || 'Se requiere un nombre para la prenda'],
-    img: '',
-    imgRules: [v => !!v || 'Se requiere una imagen de la prenda'],
+    // imgRules: [v => !!v || 'Se requiere una imagen de la prenda'],
     type: null,
     types: ['Abrigos', 'Blusas', 'Camisas', 'Camisetas', 'Chaquetas', 'Faldas', 'Jerseys', 'Pantalones', 'Polos', 'Pullovers', 'Rebecas', 'Shorts', 'Sombreros', 'Vaqueros', 'Vestidos', 'Zapatos', 'Otros'],
     season: null,
-    seasons: ['primavera-verano', 'otoño-invierno', 'todas']
+    seasons: ['primavera-verano', 'otoño-invierno', 'todas'],
+    selectedFile: null,
+    picture: ''
   }),
 
   methods: {
+    onFileSelected (event) {
+      this.selectedFile = event.target.files[0]
+      this.onUpload()
+    },
+    onUpload () {
+      const storageRef = firebase.storage().ref(`imagenes/${this.selectedFile.name}`)
+      const task = storageRef.put(this.selectedFile)
+      task.on('state_changed', () => {
+        task.snapshot.ref.getDownloadURL().then((url) => {
+          this.picture = url
+        })
+      })
+    },
     addCloth () {
       const cloth = {
         name: this.name,
-        img_url: this.img,
+        img_url: this.picture,
         cloth_type: this.type,
         season: this.season
       }
