@@ -4,21 +4,19 @@
       <v-row justify="center">
         <v-col cols="10" align="center">
           <v-avatar color="blue" size="200">
-            <img
-              :src="picture"
-            >
+            <img :src="picture" />
           </v-avatar>
         </v-col>
       </v-row>
       <v-row>
         <v-col>
-          <input type="file" @change="onFileSelected">
+          <input type="file" @change="onFileSelected" />
         </v-col>
       </v-row>
       <v-row>
         <v-col>
           <v-form>
-             <v-text-field
+            <v-text-field
               label="Nombre de usuario"
               v-model="username"
               prepend-icon="mdi-account-circle"
@@ -32,9 +30,14 @@
               prepend-icon="mdi-email"
             ></v-text-field>
 
+            <v-row>
+              <v-col align="center">
+                <v-btn color="grey" @click="update()">Guardar</v-btn>
+              </v-col>
+            </v-row>
             <v-text-field
               label="Password actual"
-              v-model="userPassword"
+              v-model="userPasswordActual"
               :type="showPasswordActual ? 'text' : 'password'"
               prepend-icon="mdi-lock"
               :rules="passwordRule"
@@ -42,9 +45,9 @@
               @click:append="showPasswordActual = !showPasswordActual"
             ></v-text-field>
 
-             <v-text-field
+            <v-text-field
               label="Nuevo password"
-              v-model="userPassword"
+              v-model="userPasswordNuevo"
               :type="showPasswordNuevo ? 'text' : 'password'"
               prepend-icon="mdi-lock"
               :rules="passwordRule"
@@ -52,9 +55,9 @@
               @click:append="showPasswordNuevo = !showPasswordNuevo"
             ></v-text-field>
 
-             <v-text-field
+            <v-text-field
               label="Confirma tu nuevo password"
-              v-model="userPassword"
+              v-model="userPasswordConfirm"
               :type="showPasswordConfirm ? 'text' : 'password'"
               prepend-icon="mdi-lock"
               :rules="passwordRule"
@@ -66,9 +69,7 @@
       </v-row>
       <v-row>
         <v-col align="center">
-          <v-btn color="grey" @click="update()">
-            Guardar
-          </v-btn>
+          <v-btn color="grey" @click="updatePassword()">Guardar Contraseña</v-btn>
         </v-col>
       </v-row>
     </v-container>
@@ -85,7 +86,9 @@ export default {
       showPasswordActual: false,
       showPasswordNuevo: false,
       showPasswordConfirm: false,
-      userPassword: '',
+      userPasswordActual: '',
+      userPasswordNuevo: '',
+      userPasswordConfirm: '',
       passwordRule: [
         v => !!v || 'Password is required',
         v => v.length >= 10 || 'Password must be more than 10 characters'
@@ -114,10 +117,12 @@ export default {
       this.onUpload()
     },
     onUpload () {
-      const storageRef = firebase.storage().ref(`imagenes/${this.selectedFile.name}`)
+      const storageRef = firebase
+        .storage()
+        .ref(`imagenes/${this.selectedFile.name}`)
       const task = storageRef.put(this.selectedFile)
       task.on('state_changed', () => {
-        task.snapshot.ref.getDownloadURL().then((url) => {
+        task.snapshot.ref.getDownloadURL().then(url => {
           this.picture = url
         })
       })
@@ -128,13 +133,32 @@ export default {
         email: this.email,
         img_url: this.picture
       }
-      Api.saveUser(user).then(() => {
+      Api.saveUser(user).then(response => {
+        if (response.token) {
+          localStorage.setItem('token', response.token)
+          console.log(response)
+          alert('Usuario modificado correctamente')
+        }
       })
+    },
+    updatePassword () {
+      if (this.userPasswordNuevo === this.userPasswordConfirm) {
+        const objectPassword = {
+          old: this.userPasswordActual,
+          new: this.userPasswordNuevo
+        }
+        Api.updatePassword(objectPassword).then(response => {
+          alert('Contraseña modificada correctamente')
+        })
+      } else {
+        alert('Contraseñas distintas')
+        this.userPasswordNuevo = ''
+        this.userPasswordConfirm = ''
+      }
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-
 </style>

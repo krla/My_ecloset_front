@@ -5,7 +5,7 @@
       <v-container fluid>
         <v-row>
           <v-col v-for="(cloth, idx) in look.clothes" :key="idx" class="d-flex child-flex" cols="6">
-            <v-card flat tile class="d-flex" v-if="look.clothes">
+            <v-card flat tile class="d-flex" >
               <v-img :src="cloth.img_url" aspect-ratio="1" class="grey lighten-2">
                 <template v-slot:placeholder>
                   <v-row class="fill-height ma-0" align="center" justify="center">
@@ -14,10 +14,10 @@
                 </template>
               </v-img>
             </v-card>
-            <v-card v-else>
-              <h3 class="font-weight-thin" align="center" justify="center">Añade prendas a tu look</h3>
-            </v-card>
           </v-col>
+          <v-card v-if="look.clothes.length == 0" height="10vh">
+            <h3 class="font-weight-thin" align="center" justify="center">Añade prendas a tu look</h3>
+            </v-card>
         </v-row>
       </v-container>
       <v-row justify="center">
