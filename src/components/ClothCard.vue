@@ -27,9 +27,9 @@ export default {
 
 <style lang="scss" scoped>
 .on {
-  border: 1px solid red;
+  border: 1px solid #E57373;
 }
 .clothImg:hover {
-  outline: 1px solid rgb(255, 201, 201)
+  outline: 1px solid rgb(243, 236, 236)
 }
 </style>

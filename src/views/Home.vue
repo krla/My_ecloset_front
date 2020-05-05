@@ -4,7 +4,7 @@
     <v-row class="mt-2" align="center" justify="center">
       <v-col cols="10" sm="6">
         <h3
-            class="font-weight-thin mt-10"
+            class="subtitle-1 font-weight-thin mt-10"
             align="center"
             justify="center"
           >Accede a tu armario para ver todas tus prendas y accesorios, o añadir uno nuevo</h3>
@@ -30,7 +30,7 @@
     <v-row class="mt-2" align="center" justify="center">
       <v-col cols="10" sm="6">
         <h3
-            class="font-weight-thin mt-10"
+            class="subtitle-1 font-weight-thin mt-10"
             align="center"
             justify="center"
           >Accede a tus looks guardados o crea uno</h3>
@@ -69,7 +69,7 @@ export default {
 
 <style lang="scss" scoped>
 .home {
-  background-color: #e5e5e5;
+  background-color: #ECEFF1;
   height: 120vh;
   width: 100vw;
   background-size: cover;

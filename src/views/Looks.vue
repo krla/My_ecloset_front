@@ -15,7 +15,7 @@
       <h2>No tienes looks, añade uno!</h2>
     </div>
 
-      <v-btn fixed fab dark class="BtnPlus" color="#13978F" to="/newlook">
+      <v-btn fixed fab dark class="BtnPlus" color="#FBC02D" to="/newlook">
         <v-icon>mdi-plus</v-icon>
       </v-btn>
 
