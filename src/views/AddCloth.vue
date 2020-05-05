@@ -56,8 +56,8 @@ export default {
   }),
 
   methods: {
-    onFileSelected (event) {
-      this.selectedFile = event.target.files[0]
+    onFileSelected (cloth) {
+      this.selectedFile = cloth.target.files[0]
       this.onUpload()
     },
     onUpload () {

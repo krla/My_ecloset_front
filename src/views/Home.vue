@@ -1,6 +1,6 @@
 <template>
   <v-container class="home">
-    <h1 class="font-weight-thin" id="title" align="center">My eCloset</h1>
+    <Navbar />
     <v-card elevation="10" color="#E5E5E5">
       <h3 class="font-weight-thin mt-10" align="center" justify="center">Accede a tu armario para ver todas tus prendas y accesorios, o añadir uno nuevo</h3>
       <v-row class="mt-2" align="center" justify="center" >
@@ -63,9 +63,13 @@
 </template>
 
 <script>
+import Navbar from '../components/Navbar'
+
 export default {
   name: 'Home',
-  components: {}
+  components: {
+    Navbar
+  }
 }
 </script>
 
