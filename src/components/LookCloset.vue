@@ -2,8 +2,8 @@
   <div class="closet">
     <v-card>
       <v-container>
-        <v-row>
-          <v-col cols="12" sm="6" md="4">
+        <v-row align="center" justify="center">
+          <v-col cols="10">
             <v-autocomplete
             v-model="types"
             :items="clothesTypes"

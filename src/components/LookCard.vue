@@ -15,9 +15,9 @@
               </v-img>
             </v-card>
           </v-col>
-          <v-card v-if="look.clothes.length == 0" height="10vh">
-            <h3 class="font-weight-thin" align="center" justify="center">Añade prendas a tu look</h3>
-            </v-card>
+          <v-col aling="center" v-if="look.clothes.length == 0">
+              <h2 class="font-weight-thin" align="center" justify="center">Añade prendas a tu look!</h2>
+          </v-col>
         </v-row>
       </v-container>
       <v-row justify="center">
@@ -80,11 +80,11 @@ export default {
 #deleteBtn {
   position: absolute;
   left: 100px;
-  bottom: 20px;
+  bottom: 10px;
 }
 #editBtn {
   position: absolute;
   right: 100px;
-  bottom: 20px;
+  bottom: 10px;
 }
 </style>

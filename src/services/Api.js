@@ -116,6 +116,14 @@ export default {
       }
     })
     return response.data
+  },
+  async deleteUser () {
+    const response = await API.delete('/users/me', {
+      headers: {
+        token: localStorage.getItem('token') //eslint-disable-line
+      }
+    })
+    return response.data
   }
 }
 // Abel:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImIiLCJlbWFpbCI6ImJAYi5jb20iLCJpYXQiOjE1ODgxMDM3OTYsImV4cCI6MTU4ODcwODU5Nn0.JLjISK0VNDfeEEaskhDolC8-yaIYulJx3-dyJfHm5zk//

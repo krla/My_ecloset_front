@@ -1,64 +1,58 @@
 <template>
   <v-container class="home">
     <Navbar />
-    <v-card elevation="10" color="#E5E5E5">
-      <h3 class="font-weight-thin mt-10" align="center" justify="center">Accede a tu armario para ver todas tus prendas y accesorios, o añadir uno nuevo</h3>
-      <v-row class="mt-2" align="center" justify="center" >
-        <v-col cols="11" sm="6" md="4">
+    <v-row class="mt-2" align="center" justify="center">
+      <v-col cols="10" sm="6">
+        <h3
+            class="font-weight-thin mt-10"
+            align="center"
+            justify="center"
+          >Accede a tu armario para ver todas tus prendas y accesorios, o añadir uno nuevo</h3>
+        <v-card elevation="10" color="#E5E5E5">
           <v-hover v-slot:default="{ hover }">
-            <v-card
-              class="mx-auto"
-              color="grey lighten-4"
-              max-width="600"
-            >
-              <v-img
-                :aspect-ratio="16/9"
-                src="../assets/armario.jpg"
-              >
-              <v-expand-transition>
-                <div
-                  v-if="hover"
-                  class="d-flex transition-fast-in-fast-out blue-grey lighten-4 v-card--reveal display-3 black--text"
-                  style="height: 100%;"
-                >
-                  <v-btn dark color="blue-grey" to="/closet">Mi armario</v-btn>
-                </div>
-              </v-expand-transition>
+            <v-card class="mx-auto" color="grey lighten-4" max-width="600">
+              <v-img :aspect-ratio="16/9" src="../assets/armario_homeok.jpg">
+                <v-expand-transition>
+                  <div
+                    v-if="hover"
+                    class="d-flex transition-fast-in-fast-out blue-grey lighten-4 v-card--reveal display-3 black--text"
+                    style="height: 100%;"
+                  >
+                    <v-btn large dark color="blue-grey" to="/closet">Mi armario</v-btn>
+                  </div>
+                </v-expand-transition>
               </v-img>
             </v-card>
           </v-hover>
-        </v-col>
-      </v-row>
-    </v-card>
-    <v-card elevation="10" color="#E5E5E5">
-      <h3 class="font-weight-thin mt-10" align="center" justify="center">Accede a tu looks guardados o crea uno</h3>
-      <v-row class="mt-2" align="center" justify="center">
-        <v-col cols="11" sm="6" md="4">
+        </v-card>
+      </v-col>
+    </v-row>
+    <v-row class="mt-2" align="center" justify="center">
+      <v-col cols="10" sm="6">
+        <h3
+            class="font-weight-thin mt-10"
+            align="center"
+            justify="center"
+          >Accede a tus looks guardados o crea uno</h3>
+        <v-card elevation="10" color="#E5E5E5">
           <v-hover v-slot:default="{ hover }">
-            <v-card
-              class="mx-auto"
-              color="grey lighten-4"
-              max-width="600"
-            >
-              <v-img
-                :aspect-ratio="16/9"
-                src="../assets/looks.jpg"
-              >
-              <v-expand-transition>
-                <div
-                  v-if="hover"
-                  class="d-flex transition-fast-in-fast-out blue-grey lighten-4 v-card--reveal display-3 black--text"
-                  style="height: 100%;"
-                >
-                  <v-btn dark color="blue-grey" to="/looks">Mis looks</v-btn>
-                </div>
-              </v-expand-transition>
+            <v-card class="mx-auto" color="grey lighten-4" max-width="600">
+              <v-img :aspect-ratio="16/9" src="../assets/looks.jpg">
+                <v-expand-transition>
+                  <div
+                    v-if="hover"
+                    class="d-flex transition-fast-in-fast-out blue-grey lighten-4 v-card--reveal display-3 black--text"
+                    style="height: 100%;"
+                  >
+                    <v-btn large dark color="blue-grey" to="/looks">Mis looks</v-btn>
+                  </div>
+                </v-expand-transition>
               </v-img>
             </v-card>
           </v-hover>
-        </v-col>
-      </v-row>
-    </v-card>
+        </v-card>
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 
@@ -75,8 +69,8 @@ export default {
 
 <style lang="scss" scoped>
 .home {
-  background-color: #E5E5E5;
-  height: 100vh;
+  background-color: #e5e5e5;
+  height: 120vh;
   width: 100vw;
   background-size: cover;
 }
@@ -88,5 +82,4 @@ export default {
   position: absolute;
   width: 100%;
 }
-
 </style>
