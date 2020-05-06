@@ -13,7 +13,7 @@ Vue.component('simple', Simple)
 Vue.config.productionTip = false
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyDoG2QyKVYAm89QFvrqYu-_rl2zcVLUYzk',
+  apiKey: process.env.VUE_APP_API_KEY,
   authDomain: 'my-ecloset.firebaseapp.com',
   databaseURL: 'https://my-ecloset.firebaseio.com',
   projectId: 'my-ecloset',
