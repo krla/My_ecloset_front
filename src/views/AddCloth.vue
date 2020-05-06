@@ -10,12 +10,18 @@
         >Guarda tu nueva prenda o accesorio</h3>
       </v-col>
     </v-row>
+
+    <v-row align="center" justify="center">
+      <v-col cols="12" sm="6" md="4">
+        <input type="file" @change="onFileSelected" />
+      </v-col>
+    </v-row>
+
     <v-row align="center" justify="center">
       <v-col cols="10" sm="6" md="4">
         <v-form ref="form" v-model="valid" lazy-validation>
-          <v-text-field v-model="name" :rules="nameRules" label="Nombre" required></v-text-field>
 
-          <input type="file" @change="onFileSelected" />
+          <v-text-field v-model="name" :rules="nameRules" label="Nombre" required></v-text-field>
 
           <v-select
             class="mt-5"

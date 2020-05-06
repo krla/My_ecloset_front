@@ -133,11 +133,11 @@ export default {
 <style lang="scss" scoped>
 
 .BtnPlus {
-  left: 60px;
+  left: 30px;
   bottom: 50px;
 }
 .BtnDelete {
-  right: 60px;
+  right: 30px;
   bottom: 50px;
 }
 </style>

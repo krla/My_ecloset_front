@@ -9,7 +9,7 @@
         </v-col>
       </v-row>
       <v-row align="center" justify="center">
-        <v-col cols="10" sm="6" md="4">
+        <v-col cols="12" sm="6" md="4">
           <input type="file" @change="onFileSelected" />
         </v-col>
       </v-row>

@@ -103,8 +103,8 @@ export default {
 <style lang="scss" scoped>
 .bg-simple {
   background-image: url("../assets/fondo_auth.png");
-  height: 105vh;
-  width: 105vw;
+  height: 100vh;
+  width: 100vw;
   background-size: cover;
 }
 .signup {
