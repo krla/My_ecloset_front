@@ -17,7 +17,7 @@
     <v-row align="center" justify="center">
       <v-col>
         <v-card-actions>
-          <v-btn :disabled="!valid" dark color="#13978F" class="button" @click="createLook()">Guardar</v-btn>
+          <v-btn :disabled="!valid" dark color="#B0BEC5" class="button" @click="createLook()">Guardar</v-btn>
         </v-card-actions>
       </v-col>
     </v-row>

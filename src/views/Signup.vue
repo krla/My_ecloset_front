@@ -1,6 +1,10 @@
 <template>
   <div class="bg-simple">
-    <h1 class="font-weight-thin" align="center">My eCloset</h1>
+    <v-row>
+      <v-col align="center">
+        <h1 class="display-1 font-weight-thin" >My eCloset</h1>
+      </v-col>
+    </v-row>
     <v-container fill-heigth fluid class="signup">
       <v-row align="center" justify="center">
         <v-col cols="10" sm="6" md="4" class="bg-transparent">
@@ -37,7 +41,7 @@
       <v-row align="center" justify="center">
         <v-col cols="10" sm="6" md="4" class="bg-transparent">
           <v-card-actions>
-            <v-btn class="button" color="#13978F" dark @click="signup">Signup</v-btn>
+            <v-btn class="button" color="#B0BEC5" dark @click="signup">Signup</v-btn>
           </v-card-actions>
         </v-col>
       </v-row>
