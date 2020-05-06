@@ -1,15 +1,30 @@
 <template>
-  <div>
-    <h1 class="font-weight-thin" align="center">Mi armario</h1>
-    <h3 class="font-weight-thin" align="center" justify="center">Guarda tu nueva prenda o accesorio</h3>
+  <div class="addCloth">
+    <v-row>
+      <v-col>
+        <h1 class="font-weight-thin" align="center">Mi armario</h1>
+        <h3
+          class="font-weight-thin"
+          align="center"
+          justify="center"
+        >Guarda tu nueva prenda o accesorio</h3>
+      </v-col>
+    </v-row>
+
+    <v-row align="center" justify="center">
+      <v-col cols="12" sm="6" md="4">
+        <input type="file" @change="onFileSelected" />
+      </v-col>
+    </v-row>
+
     <v-row align="center" justify="center">
       <v-col cols="10" sm="6" md="4">
         <v-form ref="form" v-model="valid" lazy-validation>
+
           <v-text-field v-model="name" :rules="nameRules" label="Nombre" required></v-text-field>
 
-          <input type="file" @change="onFileSelected">
-
-          <v-select class="mt-5"
+          <v-select
+            class="mt-5"
             v-model="type"
             :items="types"
             :rules="[v => !!v || 'El tipo de prenda es requerido']"
@@ -30,7 +45,7 @@
     <v-row align="center" justify="center">
       <v-col cols="10" sm="6" md="4">
         <v-card-actions>
-          <v-btn :disabled="!valid" dark color="#13978F" class="button" @click="addCloth()">Guardar</v-btn>
+          <v-btn :disabled="!valid" dark color="#B0BEC5" class="button" @click="addCloth()">Guardar</v-btn>
         </v-card-actions>
       </v-col>
     </v-row>
@@ -48,7 +63,25 @@ export default {
     nameRules: [v => !!v || 'Se requiere un nombre para la prenda'],
     // imgRules: [v => !!v || 'Se requiere una imagen de la prenda'],
     type: null,
-    types: ['Abrigos', 'Blusas', 'Camisas', 'Camisetas', 'Chaquetas', 'Faldas', 'Jerseys', 'Pantalones', 'Polos', 'Pullovers', 'Rebecas', 'Shorts', 'Sombreros', 'Vaqueros', 'Vestidos', 'Zapatos', 'Otros'],
+    types: [
+      'Abrigos',
+      'Blusas',
+      'Camisas',
+      'Camisetas',
+      'Chaquetas',
+      'Faldas',
+      'Jerseys',
+      'Pantalones',
+      'Polos',
+      'Pullovers',
+      'Rebecas',
+      'Shorts',
+      'Sombreros',
+      'Vaqueros',
+      'Vestidos',
+      'Zapatos',
+      'Otros'
+    ],
     season: null,
     seasons: ['primavera-verano', 'otoño-invierno', 'todas'],
     selectedFile: null,
@@ -61,10 +94,12 @@ export default {
       this.onUpload()
     },
     onUpload () {
-      const storageRef = firebase.storage().ref(`imagenes/${this.selectedFile.name}`)
+      const storageRef = firebase
+        .storage()
+        .ref(`imagenes/${this.selectedFile.name}`)
       const task = storageRef.put(this.selectedFile)
       task.on('state_changed', () => {
-        task.snapshot.ref.getDownloadURL().then((url) => {
+        task.snapshot.ref.getDownloadURL().then(url => {
           this.picture = url
         })
       })

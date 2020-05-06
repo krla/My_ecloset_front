@@ -1,10 +1,10 @@
 <template>
   <div id="navbar">
-    <v-app-bar color="#9E9C9C" dark app>
+    <v-app-bar color="blue-grey" dark app>
       <v-btn icon>
         <v-icon @click="back()">mdi-chevron-left</v-icon>
       </v-btn>
-      <v-toolbar-title>My eCloset</v-toolbar-title>
+      <v-toolbar-title class="title font-weight-thin">My eCloset</v-toolbar-title>
       <v-spacer></v-spacer>
       <v-app-bar-nav-icon @click="drawer = true"></v-app-bar-nav-icon>
     </v-app-bar>

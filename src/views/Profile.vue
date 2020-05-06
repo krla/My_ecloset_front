@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-container>
-      <v-row justify="center">
+      <v-row align="center" justify="center">
         <v-col cols="10" align="center">
           <v-avatar color="blue" size="200">
             <img :src="picture" />
@@ -9,13 +9,13 @@
         </v-col>
       </v-row>
       <v-row align="center" justify="center">
-        <v-col cols="10" sm="6" md="4">
+        <v-col cols="12" sm="6" md="4">
           <input type="file" @change="onFileSelected" />
         </v-col>
       </v-row>
       <v-row align="center" justify="center">
         <v-col align="center">
-          <v-btn color="grey" @click="update()">Guardar imagen</v-btn>
+          <v-btn color="#B0BEC5" dark @click="update()">Guardar imagen</v-btn>
         </v-col>
       </v-row>
       <v-row align="center" justify="center">
@@ -40,7 +40,7 @@
 
                   <v-row align="center" justify="center">
                     <v-col align="center">
-                      <v-btn color="grey" @click="update()">Guardar</v-btn>
+                      <v-btn color="#B0BEC5" dark @click="update()">Guardar</v-btn>
                     </v-col>
                   </v-row>
                 </v-col>
@@ -80,7 +80,7 @@
                   ></v-text-field>
                   <v-row align="center" justify="center">
                     <v-col align="center">
-                      <v-btn color="grey" @click="updatePassword()">Guardar Contraseña</v-btn>
+                      <v-btn color="#B0BEC5" dark @click="updatePassword()">Guardar Contraseña</v-btn>
                     </v-col>
                   </v-row>
                 </v-col>
@@ -91,7 +91,7 @@
             <v-dialog v-model="dialog" persistent max-width="290">
               <template v-slot:activator="{ on }">
                 <v-card-actions>
-                  <v-btn dark color="red" v-on="on">Eliminar cuenta
+                  <v-btn dark color="#E57373" v-on="on">Eliminar cuenta
                   </v-btn>
                 </v-card-actions>
               </template>
@@ -100,8 +100,8 @@
                 <v-card-text>Eliminarás tu cuenta, y con ella todas tus prendas y looks!</v-card-text>
                 <v-card-actions>
                   <v-spacer></v-spacer>
-                  <v-btn color="green darken-1" text @click="dialog = false">Cancelar</v-btn>
-                  <v-btn color="green darken-1" text @click="deleteAccount()">Eliminar</v-btn>
+                  <v-btn color="#78909C" text @click="dialog = false">Cancelar</v-btn>
+                  <v-btn color="#78909C" text @click="deleteAccount()">Eliminar</v-btn>
                 </v-card-actions>
               </v-card>
             </v-dialog>

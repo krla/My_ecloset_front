@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-card>
-      <v-card-title class="title">{{look.name}}</v-card-title>
+      <v-card-title class="title font-weight-thin">{{look.name}}</v-card-title>
       <v-container fluid>
         <v-row>
           <v-col v-for="(cloth, idx) in look.clothes" :key="idx" class="d-flex child-flex" cols="6">
@@ -24,7 +24,7 @@
         <v-dialog v-model="dialog" persistent max-width="290">
           <template v-slot:activator="{ on }">
             <v-card-actions>
-              <v-btn small fab dark id="deleteBtn" color="red" v-on="on">
+              <v-btn small fab dark id="deleteBtn" color="#E57373" v-on="on">
                 <v-icon>mdi-delete</v-icon>
               </v-btn>
             </v-card-actions>
@@ -34,14 +34,14 @@
             <v-card-text>Eliminarás el look</v-card-text>
             <v-card-actions>
               <v-spacer></v-spacer>
-              <v-btn color="green darken-1" text @click="dialog = false">Cancelar</v-btn>
-              <v-btn color="green darken-1" text @click="deleteLook()">Eliminar</v-btn>
+              <v-btn color="#78909C" text @click="dialog = false">Cancelar</v-btn>
+              <v-btn color="#78909C" text @click="deleteLook()">Eliminar</v-btn>
             </v-card-actions>
           </v-card>
         </v-dialog>
       </v-row>
       <v-card-actions>
-        <v-btn small fab dark id="editBtn" color="#13978F" @click="editLook()">
+        <v-btn small fab dark id="editBtn" color="#5C6BC0" @click="editLook()">
           <v-icon>mdi-pencil</v-icon>
         </v-btn>
       </v-card-actions>
@@ -74,7 +74,7 @@ export default {
 
 <style lang="scss" scoped>
 .title {
-  background-color: #13978f;
+  background-color: #90A4AE;
   color: white;
 }
 #deleteBtn {

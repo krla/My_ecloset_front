@@ -9,16 +9,16 @@
     <v-container>
       <v-row v-if="wardrobe" align="center" justify="center">
         <v-col align="center">
-          <v-btn @click="openWardrobe()">Abrir armario</v-btn>
+          <v-btn color="#B0BEC5" dark @click="openWardrobe()">Abrir armario</v-btn>
         </v-col>
       </v-row>
       <v-row v-else align="center" justify="center">
         <v-col align="center">
-          <v-btn @click="openWardrobe()">Ver look</v-btn>
+          <v-btn color="#B0BEC5" dark @click="openWardrobe()">Ver look</v-btn>
         </v-col>
       </v-row>
       <v-row align="center" justify="center" v-show="!wardrobe">
-        <v-col cols="10" sm="8">
+        <v-col cols="12" sm="8">
           <LookCloset :clothes="clothes" :look="look.clothes" v-on:addCloth="addToLook" />
         </v-col>
       </v-row>
@@ -26,7 +26,7 @@
     <v-row align="center" justify="center">
       <v-col cols="10" sm="6">
         <v-card v-show="wardrobe">
-          <v-card-title class="title">{{look.name}}</v-card-title>
+          <v-card-title class="title font-weight-thin">{{look.name}}</v-card-title>
           <v-container fluid>
             <v-row>
               <v-col
@@ -56,7 +56,7 @@
                 <v-dialog v-model="dialog" persistent max-width="290">
                   <template v-slot:activator="{ on }">
                     <v-card-actions>
-                      <v-btn small fab dark id="deleteBtn" color="red" v-on="on">
+                      <v-btn small fab dark id="deleteBtn" color="#E57373" v-on="on">
                         <v-icon>mdi-delete</v-icon>
                       </v-btn>
                     </v-card-actions>
@@ -66,15 +66,15 @@
                     <v-card-text>Eliminarás la prenda</v-card-text>
                     <v-card-actions>
                       <v-spacer></v-spacer>
-                      <v-btn color="green darken-1" text @click="dialog = false">Cancelar</v-btn>
-                      <v-btn color="green darken-1" text @click="deleteClothId()">Eliminar</v-btn>
+                      <v-btn color="#78909C" text @click="dialog = false">Cancelar</v-btn>
+                      <v-btn color="#78909C" text @click="deleteClothId()">Eliminar</v-btn>
                     </v-card-actions>
                   </v-card>
                 </v-dialog>
               </v-col>
               <v-col cols="3">
                 <v-card-actions>
-                  <v-btn small fab dark id="saveBtn" color="#13978F" @click="editLook()">
+                  <v-btn small fab dark id="saveBtn" color="#FFA726" @click="editLook()">
                     <v-icon>mdi-content-save</v-icon>
                   </v-btn>
                 </v-card-actions>
@@ -145,7 +145,7 @@ export default {
 
 <style lang="scss" scoped>
 .title {
-  background-color: #13978f;
+  background-color: #90A4AE;
   color: white;
 }
 #deleteBtn {
@@ -157,6 +157,6 @@ export default {
   bottom: 20px;
 }
 .on {
-  border: 1px solid red;
+  border: 1px solid #455A64;
 }
 </style>
