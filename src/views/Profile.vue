@@ -100,8 +100,8 @@
                 <v-card-text>Eliminarás tu cuenta, y con ella todas tus prendas y looks!</v-card-text>
                 <v-card-actions>
                   <v-spacer></v-spacer>
-                  <v-btn color="green darken-1" text @click="dialog = false">Cancelar</v-btn>
-                  <v-btn color="green darken-1" text @click="deleteAccount()">Eliminar</v-btn>
+                  <v-btn color="#78909C" text @click="dialog = false">Cancelar</v-btn>
+                  <v-btn color="#78909C" text @click="deleteAccount()">Eliminar</v-btn>
                 </v-card-actions>
               </v-card>
             </v-dialog>
