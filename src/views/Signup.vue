@@ -66,15 +66,15 @@ export default {
       showPassword: false,
       userPassword: '',
       passwordRule: [
-        v => !!v || 'Password is required',
-        v => v.length >= 10 || 'Password must be more than 10 characters'
+        v => !!v || 'Contraseña es requerida',
+        v => v.length >= 6 || 'Contraseña debe tener al menos 6 caracteres'
       ],
       username: '',
-      userRules: [v => !!v || 'Username is required'],
+      userRules: [v => !!v || 'Nombre de usuario es requerido'],
       email: '',
       emailRules: [
-        v => !!v || 'E-mail is required',
-        v => /.+@.+\..+/.test(v) || 'E-mail must be valid'
+        v => !!v || 'E-mail es requerido',
+        v => /.+@.+\..+/.test(v) || 'E-mail debe ser válido'
       ],
       genderInput: 'Mujer',
       genders: ['Mujer', 'Hombre']
