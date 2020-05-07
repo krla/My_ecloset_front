@@ -11,21 +11,22 @@
       </v-col>
     </v-row>
 
-    <v-card>
-      <v-row align="center" justify="center">
+    <v-row align="center" justify="center">
       <v-col cols="12" sm="6" md="4">
-        <p class="font-weight-ligth"
-          align="center"
-          justify="center">Añade una foto de tu prenda o accesorio</p>
-        <input type="file" accept="image/*" @change="onFileSelected" />
+        <v-card>
+          <p
+            class="font-weight-ligth"
+            align="center"
+            justify="center"
+          >Añade una foto de tu prenda o accesorio</p>
+          <input type="file" accept="image/*" @change="onFileSelected" />
+        </v-card>
       </v-col>
     </v-row>
-    </v-card>
 
     <v-row align="center" justify="center">
       <v-col cols="10" sm="6" md="4">
         <v-form ref="form" v-model="valid" lazy-validation>
-
           <v-text-field v-model="name" :rules="nameRules" label="Nombre" required></v-text-field>
 
           <v-select
