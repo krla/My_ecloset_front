@@ -47,6 +47,9 @@
         </v-col>
       </v-row>
     </v-container>
+    <v-alert v-show="wrongDetails" type="error">
+      Wrong username or password
+    </v-alert>
   </div>
 </template>
 
@@ -66,7 +69,8 @@ export default {
       emailRules: [
         v => !!v || 'E-mail is required',
         v => /.+@.+\..+/.test(v) || 'E-mail must be valid'
-      ]
+      ],
+      wrongDetails: false
     }
   },
   methods: {
@@ -81,7 +85,7 @@ export default {
             localStorage.setItem('token', response.token)
             this.$router.push('/home')
           } else {
-            alert('wrong username or password')
+            this.wrongDetails = true
           }
         })
         .catch(err => console.log(err))
