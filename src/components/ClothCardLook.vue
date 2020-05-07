@@ -20,8 +20,11 @@ export default {
   },
   methods: {
     selectthisCloth () {
-      this.selected = !this.selected
-      this.$emit('selectCloth', this.clothObject)
+      if (!this.isSelected) {
+        console.log('hola')
+        this.selected = !this.selected
+        this.$emit('selectCloth', this.clothObject)
+      }
     }
   }
 }
@@ -29,7 +32,7 @@ export default {
 
 <style lang="scss" scoped>
 .on {
-  border: 1px solid #B0BEC5;
+  border: 2px solid #263238;
 }
 .clothImg:hover {
   outline: 1px solid rgb(255, 201, 201)

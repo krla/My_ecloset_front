@@ -56,8 +56,8 @@
     <v-row justify="center">
       <v-dialog v-model="dialog" persistent max-width="290">
         <template v-slot:activator="{ on }">
-          <v-btn fixed dark fab class="BtnDelete" color="#E57373" v-on="on" :disabled="showRemove">
-            <v-icon>mdi-delete</v-icon>
+          <v-btn fixed fab class="BtnDelete" color="#E57373" v-on="on" :disabled="showRemove">
+            <v-icon color="white">mdi-delete</v-icon>
           </v-btn>
         </template>
         <v-card>
