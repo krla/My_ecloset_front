@@ -5,7 +5,7 @@
       class="font-weight-thin"
       align="center"
       justify="center"
-    >Aqui podrás añadir prendas al look desde tu armario, eliminarlas y guardar el look con los cambios realizados</h3>
+    >Aquí podrás añadir prendas al look desde tu armario, eliminarlas y guardar el look con los cambios realizados</h3>
     <v-container>
       <v-row v-if="wardrobe" align="center" justify="center">
         <v-col align="center">

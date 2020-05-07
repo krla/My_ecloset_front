@@ -21,12 +21,15 @@ export default {
     })
     return response.data
   },
-  async getAllClothes (types) {
+  async getAllClothes (types, season) {
     let url = '/me/clothes?'
     if (types) {
       types.forEach(elem => {
         url += `cloth_type=${elem}&`
       })
+    }
+    if (season) {
+      url += `season=${season}&`
     }
     const response = await API.get(url, {
       headers: {
