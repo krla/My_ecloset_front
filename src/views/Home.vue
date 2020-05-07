@@ -1,6 +1,6 @@
 <template>
   <v-container class="home">
-    <Navbar />
+    <Navbar :disable="true" />
     <v-row class="mt-2" align="center" justify="center">
       <v-col cols="10" sm="6">
         <h3

@@ -1,7 +1,7 @@
 <template>
   <div id="navbar">
     <v-app-bar color="blue-grey" dark app>
-      <v-btn icon>
+      <v-btn v-if="isDisable" icon>
         <v-icon @click="back()">mdi-chevron-left</v-icon>
       </v-btn>
       <v-toolbar-title class="title font-weight-thin">My eCloset</v-toolbar-title>
@@ -32,6 +32,15 @@ export default {
   data: () => ({
     drawer: null
   }),
+  props: {
+    disable: Boolean
+  },
+  computed: {
+    isDisable () {
+      if (this.disable) return false
+      else return true
+    }
+  },
   methods: {
     logOut () {
       localStorage.clear()
