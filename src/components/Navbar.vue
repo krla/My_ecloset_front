@@ -12,33 +12,33 @@
     <v-navigation-drawer v-model="drawer" fixed temporary right>
       <v-list nav dense>
         <v-list-item-group active-class="deep-purple--text text--accent-4">
-            <v-list-item>
+            <v-list-item style="height:50px">
             <v-list-item-title>
               <router-link class="link" to="/home">Inicio</router-link>
             </v-list-item-title>
           </v-list-item>
 
-          <v-list-item>
+          <v-list-item style="height:50px">
             <v-list-item-title>
-              <router-link class="link" to="/closet" style="height:50px">Mi armario</router-link>
+              <router-link class="link" to="/closet" >Mi armario</router-link>
             </v-list-item-title>
           </v-list-item>
 
-          <v-list-item>
+          <v-list-item style="height:50px">
             <v-list-item-title>
-              <router-link class="link" to="/looks" style="height:50px">Mis looks</router-link>
+              <router-link class="link" to="/looks">Mis looks</router-link>
             </v-list-item-title>
           </v-list-item>
 
-          <v-list-item>
+          <v-list-item style="height:50px">
             <v-list-item-title>
-              <router-link class="link" to="/profile" style="height:50px">Mi perfil</router-link>
+              <router-link class="link" to="/profile">Mi perfil</router-link>
             </v-list-item-title>
           </v-list-item>
 
-          <v-list-item>
+          <v-list-item style="height:50px">
             <v-list-item-title>
-              <v-list-item-action class="link" @click="logOut()" style="height:50px">Cerrar sesión</v-list-item-action>
+              <v-list-item-action class="link" @click="logOut()">Cerrar sesión</v-list-item-action>
             </v-list-item-title>
           </v-list-item>
         </v-list-item-group>
