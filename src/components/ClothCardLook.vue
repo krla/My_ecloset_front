@@ -21,7 +21,6 @@ export default {
   methods: {
     selectthisCloth () {
       if (!this.isSelected) {
-        console.log('hola')
         this.selected = !this.selected
         this.$emit('selectCloth', this.clothObject)
       }

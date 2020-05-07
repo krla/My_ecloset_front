@@ -30,9 +30,9 @@
                   @change="filterClothesByTypeAndSeason()"
                 ></v-autocomplete>
               </v-col>
-            </v-row>
+        </v-row>
         <v-row>
-          <v-col v-for="(cloth, idx) in clothes" :key="idx">
+          <v-col v-for="(cloth, idx) in arrayicitoToShow" :key="idx">
             <Cloth class="ml-5" :clothObject="cloth" :isSelected="lookIds.includes(cloth._id)" v-on:selectCloth="addClothToLook" />
           </v-col>
         </v-row>
@@ -52,7 +52,8 @@ export default {
       clothesTypes: ['Abrigos', 'Blusas', 'Camisas', 'Camisetas', 'Chaquetas', 'Faldas', 'Jerseys', 'Pantalones', 'Polos', 'Pullovers', 'Rebecas', 'Shorts', 'Sombreros', 'Vaqueros', 'Vestidos', 'Zapatos', 'Otros'],
       types: [],
       seasons: ['primavera-verano', 'otoño-invierno'],
-      season: ''
+      season: '',
+      filtered: []
     }
   },
   props: {
@@ -66,6 +67,12 @@ export default {
     lookIds () {
       if (this.look) return this.look.map(cloth => cloth._id)
       else return []
+    },
+    arrayicitoToShow () {
+      if (this.types.length !== 0 || this.season !== '') {
+        return this.filtered
+      }
+      return this.clothes
     }
   },
   methods: {
@@ -73,9 +80,11 @@ export default {
       this.$emit('addCloth', cloth)
     },
     filterClothesByTypeAndSeason () {
-      Api.getAllClothes(this.types, this.season).then(res => {
-        this.clothes = res
-      })
+      if (this.types.length !== 0 || this.season !== '') {
+        Api.getAllClothes(this.types, this.season).then(res => {
+          this.filtered = res
+        })
+      }
     }
   }
 }
