@@ -1,5 +1,6 @@
 <template>
   <div class="addCloth">
+    <v-alert v-if="alert" type="error">Falta algún campo por rellenar</v-alert>
     <v-row>
       <v-col>
         <h1 class="font-weight-thin" align="center">Mi armario</h1>
@@ -68,7 +69,7 @@ export default {
     name: '',
     nameRules: [v => !!v || 'Se requiere un nombre para la prenda'],
     // imgRules: [v => !!v || 'Se requiere una imagen de la prenda'],
-    type: null,
+    type: '',
     types: [
       'Abrigos',
       'Blusas',
@@ -88,10 +89,9 @@ export default {
       'Zapatos',
       'Otros'
     ],
-    season: null,
+    season: '',
     seasons: ['primavera-verano', 'otoño-invierno', 'todas'],
-    selectedFile: null,
-    picture: '',
+    selectedFile: '',
     alert: false
   }),
 
@@ -120,17 +120,21 @@ export default {
       })
     },
     async addCloth () {
-      const imgURL = await this.uploadImage()
-      this.picture = imgURL
-      const cloth = {
-        name: this.name,
-        img_url: this.picture,
-        cloth_type: this.type,
-        season: this.season
+      if (this.name === '' || this.selectedFile === '' || this.type === '' || this.season === '') {
+        this.alert = true
+      } else {
+        this.alert = false
+        const imgURL = await this.uploadImage()
+        const cloth = {
+          name: this.name,
+          img_url: imgURL,
+          cloth_type: this.type,
+          season: this.season
+        }
+        Api.addCloth(cloth).then(() => {
+          this.$router.push('/closet')
+        })
       }
-      Api.addCloth(cloth).then(() => {
-        this.$router.push('/closet')
-      })
     }
   }
 }
