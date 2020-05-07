@@ -1,5 +1,6 @@
 <template>
   <div>
+    <v-alert v-if="user" type="success">Usuario modificado correctamente</v-alert>
     <v-container>
       <v-row align="center" justify="center">
         <v-col cols="10" align="center">
@@ -10,7 +11,7 @@
       </v-row>
       <v-row align="center" justify="center">
         <v-col cols="12" sm="6" md="4">
-          <input type="file" @change="onFileSelected" />
+          <input type="file" accept="image/*" @change="onFileSelected" />
         </v-col>
       </v-row>
       <v-row align="center" justify="center">
@@ -81,6 +82,8 @@
                   <v-row align="center" justify="center">
                     <v-col align="center">
                       <v-btn color="#B0BEC5" dark @click="updatePassword()">Guardar Contraseña</v-btn>
+                      <v-alert v-if="password" type="success">Contraseña modificada correctamente</v-alert>
+                      <v-alert v-if="differentPassword" type="error">Contraseñas distintas</v-alert>
                     </v-col>
                   </v-row>
                 </v-col>
@@ -91,8 +94,7 @@
             <v-dialog v-model="dialog" persistent max-width="290">
               <template v-slot:activator="{ on }">
                 <v-card-actions>
-                  <v-btn dark color="#E57373" v-on="on">Eliminar cuenta
-                  </v-btn>
+                  <v-btn dark color="#E57373" v-on="on">Eliminar cuenta</v-btn>
                 </v-card-actions>
               </template>
               <v-card>
@@ -139,7 +141,10 @@ export default {
       picture: '',
       selectedFile: null,
       dialog: false,
-      userId: ''
+      userId: '',
+      user: false,
+      password: false,
+      differentPassword: false
     }
   },
   created () {
@@ -153,20 +158,30 @@ export default {
   methods: {
     onFileSelected (photo) {
       this.selectedFile = photo.target.files[0]
-      this.onUpload()
     },
-    onUpload () {
-      const storageRef = firebase
-        .storage()
-        .ref(`imagenes/${this.selectedFile.name}`)
-      const task = storageRef.put(this.selectedFile)
-      task.on('state_changed', () => {
-        task.snapshot.ref.getDownloadURL().then(url => {
-          this.picture = url
-        })
+    uploadImage () {
+      return new Promise(resolve => {
+        var storageRef = firebase.storage().ref()
+        var metadata = {
+          contentType: 'image/jpeg'
+        }
+        var uploadTask = storageRef
+          .child('images/' + this.selectedFile.name)
+          .put(this.selectedFile, metadata)
+        uploadTask.on(
+          firebase.storage.TaskEvent.STATE_CHANGED,
+          () => {},
+          error => console.log(error),
+          async function () {
+            const downloadURL = await uploadTask.snapshot.ref.getDownloadURL()
+            resolve(downloadURL)
+          }
+        )
       })
     },
-    update () {
+    async update () {
+      const imgURL = await this.uploadImage()
+      this.picture = imgURL
       const user = {
         name: this.username,
         email: this.email,
@@ -175,7 +190,7 @@ export default {
       Api.saveUser(user).then(response => {
         if (response.token) {
           localStorage.setItem('token', response.token)
-          alert('Usuario modificado correctamente')
+          this.user = true
         }
       })
     },
@@ -186,10 +201,10 @@ export default {
           new: this.userPasswordNuevo
         }
         Api.updatePassword(objectPassword).then(response => {
-          alert('Contraseña modificada correctamente')
+          this.password = true
         })
       } else {
-        alert('Contraseñas distintas')
+        this.differentPassword = true
         this.userPasswordNuevo = ''
         this.userPasswordConfirm = ''
       }

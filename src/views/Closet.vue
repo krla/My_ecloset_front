@@ -21,10 +21,26 @@
                   small-chips
                   label="Busca por categoría"
                   multiple
-                  @change="filterClothesByType()"
+                  @change="filterClothesByTypeAndSeason()"
                 ></v-autocomplete>
               </v-col>
             </v-row>
+
+            <v-row align="center" justify="center">
+              <v-col cols="10">
+                <v-autocomplete
+                  v-model="season"
+                  :items="seasons"
+                  outlined
+                  dense
+                  chips
+                  small-chips
+                  label="Busca por temporada"
+                  @change="filterClothesByTypeAndSeason()"
+                ></v-autocomplete>
+              </v-col>
+            </v-row>
+
             <v-row>
               <v-col v-for="(cloth, idx) in clothes" :key="idx">
                 <Cloth class="ml-5" :clothObject="cloth" v-on:selectCloth="deleteCloth" />
@@ -88,6 +104,8 @@ export default {
         'Otros'
       ],
       types: [],
+      seasons: ['primavera-verano', 'otoño-invierno'],
+      season: '',
       dialog: false
     }
   },
@@ -121,8 +139,8 @@ export default {
       })
       this.dialog = false
     },
-    filterClothesByType () {
-      Api.getAllClothes(this.types).then(res => {
+    filterClothesByTypeAndSeason () {
+      Api.getAllClothes(this.types, this.season).then(res => {
         this.clothes = res
       })
     }

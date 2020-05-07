@@ -11,11 +11,16 @@
       </v-col>
     </v-row>
 
-    <v-row align="center" justify="center">
+    <v-card>
+      <v-row align="center" justify="center">
       <v-col cols="12" sm="6" md="4">
+        <p class="font-weight-ligth"
+          align="center"
+          justify="center">Añade una foto de tu prenda o accesorio</p>
         <input type="file" accept="image/*" @change="onFileSelected" />
       </v-col>
     </v-row>
+    </v-card>
 
     <v-row align="center" justify="center">
       <v-col cols="10" sm="6" md="4">
@@ -85,7 +90,8 @@ export default {
     season: null,
     seasons: ['primavera-verano', 'otoño-invierno', 'todas'],
     selectedFile: null,
-    picture: ''
+    picture: '',
+    alert: false
   }),
 
   methods: {

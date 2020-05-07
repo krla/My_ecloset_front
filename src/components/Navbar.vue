@@ -12,39 +12,18 @@
     <v-navigation-drawer v-model="drawer" fixed temporary right>
       <v-list nav dense>
         <v-list-item-group active-class="deep-purple--text text--accent-4">
-            <v-list-item>
-            <v-list-item-title>
-              <router-link class="link" to="/home">Inicio</router-link>
-            </v-list-item-title>
-          </v-list-item>
+          <v-list-item to="/home">Inicio</v-list-item>
 
-          <v-list-item>
-            <v-list-item-title>
-              <router-link class="link" to="/closet">Mi armario</router-link>
-            </v-list-item-title>
-          </v-list-item>
+          <v-list-item to="/closet">Mi armario</v-list-item>
 
-          <v-list-item>
-            <v-list-item-title>
-              <router-link class="link" to="/looks">Mis looks</router-link>
-            </v-list-item-title>
-          </v-list-item>
+          <v-list-item to="/looks">Mis looks</v-list-item>
 
-          <v-list-item>
-            <v-list-item-title>
-              <router-link class="link" to="/profile">Mi perfil</router-link>
-            </v-list-item-title>
-          </v-list-item>
+          <v-list-item to="/profile">Mi perfil</v-list-item>
 
-          <v-list-item>
-            <v-list-item-title>
-              <v-list-item-action class="link" @click="logOut()">Cerrar sesión</v-list-item-action>
-            </v-list-item-title>
-          </v-list-item>
+          <v-list-item @click="logOut()">Cerrar sesión</v-list-item>
         </v-list-item-group>
       </v-list>
     </v-navigation-drawer>
-
   </div>
 </template>
 
@@ -66,8 +45,4 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.link {
-  text-decoration: none;
-  color: black;
-}
 </style>

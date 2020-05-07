@@ -5,6 +5,9 @@
         <h1 class="display-1 font-weight-thin" >My eCloset</h1>
       </v-col>
     </v-row>
+    <v-alert v-if="wrongDetails" type="error">
+      Wrong username or password
+    </v-alert>
     <v-container fill-heigth fluid class="login">
       <v-row align="center" justify="center">
         <v-col cols="10" sm="6" md="4" class="bg-transparent">
@@ -66,7 +69,8 @@ export default {
       emailRules: [
         v => !!v || 'E-mail is required',
         v => /.+@.+\..+/.test(v) || 'E-mail must be valid'
-      ]
+      ],
+      wrongDetails: false
     }
   },
   methods: {
@@ -81,7 +85,7 @@ export default {
             localStorage.setItem('token', response.token)
             this.$router.push('/home')
           } else {
-            alert('wrong username or password')
+            this.wrongDetails = true
           }
         })
         .catch(err => console.log(err))
