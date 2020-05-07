@@ -11,7 +11,7 @@
         <v-card elevation="10" color="#E5E5E5">
           <v-hover v-slot:default="{ hover }">
             <v-card class="mx-auto" color="grey lighten-4" max-width="600">
-              <v-img :aspect-ratio="16/9" src="../assets/armario_homeok.jpg">
+              <v-img :aspect-ratio="16/9" src="../assets/armario.jpg">
                 <v-expand-transition>
                   <div
                     v-if="hover"
@@ -37,7 +37,7 @@
         <v-card elevation="10" color="#E5E5E5">
           <v-hover v-slot:default="{ hover }">
             <v-card class="mx-auto" color="grey lighten-4" max-width="600">
-              <v-img :aspect-ratio="16/9" src="../assets/looks.jpg">
+              <v-img :aspect-ratio="16/9" src="../assets/catwalk.jpg">
                 <v-expand-transition>
                   <div
                     v-if="hover"
