@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-img :src="clothObject.img_url" height="100px" class="clothImg"
-    :class="{on: isSelected || selected}" width="100px" @click="selectthisCloth()">
+    :class="{on: clothObject.isSelected}" width="100px" @click="selectthisCloth()">
     </v-img>
   </div>
 </template>
@@ -9,21 +9,12 @@
 <script>
 export default {
   name: 'cloth',
-  data () {
-    return {
-      selected: false
-    }
-  },
   props: {
-    clothObject: Object,
-    isSelected: Boolean
+    clothObject: Object
   },
   methods: {
     selectthisCloth () {
-      if (!this.isSelected) {
-        this.selected = !this.selected
-        this.$emit('selectCloth', this.clothObject)
-      }
+      this.$emit('selectCloth', this.clothObject)
     }
   }
 }

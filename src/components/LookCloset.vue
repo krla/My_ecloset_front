@@ -13,7 +13,6 @@
             small-chips
             label="Filtra tus prendas y accesorios"
             multiple
-            @change="filterClothesByTypeAndSeason()"
             ></v-autocomplete>
           </v-col>
         </v-row>
@@ -27,13 +26,12 @@
                   chips
                   small-chips
                   label="Busca por temporada"
-                  @change="filterClothesByTypeAndSeason()"
                 ></v-autocomplete>
               </v-col>
         </v-row>
         <v-row>
-          <v-col v-for="(cloth, idx) in arrayicitoToShow" :key="idx">
-            <Cloth class="ml-5" :clothObject="cloth" :isSelected="lookIds.includes(cloth._id)" v-on:selectCloth="addClothToLook" />
+          <v-col v-for="(cloth, idx) in filtered" :key="idx">
+            <Cloth class="ml-5" :clothObject="cloth" v-on:selectCloth="addClothToLook" />
           </v-col>
         </v-row>
       </v-container>
@@ -42,7 +40,6 @@
 </template>
 
 <script>
-import Api from '../services/Api'
 import Cloth from '../components/ClothCardLook'
 
 export default {
@@ -52,39 +49,35 @@ export default {
       clothesTypes: ['Abrigos', 'Blusas', 'Camisas', 'Camisetas', 'Chaquetas', 'Faldas', 'Jerseys', 'Pantalones', 'Polos', 'Pullovers', 'Rebecas', 'Shorts', 'Sombreros', 'Vaqueros', 'Vestidos', 'Zapatos', 'Otros'],
       types: [],
       seasons: ['primavera-verano', 'otoño-invierno'],
-      season: '',
-      filtered: []
+      season: ''
     }
   },
   props: {
-    clothes: Array,
-    look: Array
+    clothes: Array
   },
   components: {
     Cloth
   },
   computed: {
     lookIds () {
-      if (this.look) return this.look.map(cloth => cloth._id)
-      else return []
-    },
-    arrayicitoToShow () {
-      if (this.types.length !== 0 || this.season !== '') {
-        return this.filtered
-      }
       return this.clothes
+        ? this.clothes.filter(c => c.isSelected === true) : []
+    },
+    filtered () {
+      let filterC = this.clothes
+      if (this.types.length !== 0) {
+        filterC = filterC.filter(cloth => this.types.includes(cloth.cloth_type))
+      }
+
+      if (this.season) {
+        filterC = filterC.filter(cloth => this.season === cloth.season)
+      }
+      return filterC
     }
   },
   methods: {
     addClothToLook (cloth) {
       this.$emit('addCloth', cloth)
-    },
-    filterClothesByTypeAndSeason () {
-      if (this.types.length !== 0 || this.season !== '') {
-        Api.getAllClothes(this.types, this.season).then(res => {
-          this.filtered = res
-        })
-      }
     }
   }
 }

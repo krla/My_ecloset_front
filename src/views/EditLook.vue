@@ -19,7 +19,7 @@
       </v-row>
       <v-row align="center" justify="center" v-show="!wardrobe">
         <v-col cols="12" sm="8">
-          <LookCloset :clothes="clothes" :look="look.clothes" v-on:addCloth="addToLook" />
+          <LookCloset :clothes="clothes" v-on:addCloth="addToLook" />
         </v-col>
       </v-row>
     </v-container>
@@ -30,7 +30,7 @@
           <v-container fluid>
             <v-row>
               <v-col
-                v-for="(cloth, idx) in look.clothes"
+                v-for="(cloth, idx) in selected"
                 :key="idx"
                 class="d-flex child-flex"
                 cols="6"
@@ -104,17 +104,32 @@ export default {
   components: {
     LookCloset
   },
+  computed: {
+    selected () {
+      return this.clothes
+        ? this.clothes.filter(c => c.isSelected === true) : []
+    }
+  },
   created () {
-    Api.getAllClothes().then(res => {
-      this.clothes = res
-    })
-    Api.getOneLook(this.$route.params.id).then(res => {
-      this.look = res
+    Api.getAllClothes().then(clothes => {
+      Api.getOneLook(this.$route.params.id).then(look => {
+        this.look = look
+        clothes = clothes.map(c => ({ isSelected: false, ...c }))
+
+        look.clothes.forEach(l => {
+          clothes.forEach(c => {
+            if (c._id === l._id) c.isSelected = true
+          })
+        })
+        this.clothes = clothes
+      })
     })
   },
   methods: {
     addToLook (clothToAdd) {
-      this.look.clothes.push(clothToAdd)
+      this.clothes.forEach(c => {
+        if (c._id === clothToAdd._id) c.isSelected = true
+      })
     },
     openWardrobe () {
       this.wardrobe = !this.wardrobe
@@ -128,14 +143,27 @@ export default {
       }
     },
     deleteClothId () {
-      this.look.clothes = this.look.clothes.filter(
-        cloth => !this.arrayToDelete.includes(cloth._id)
-      )
+      this.clothes.forEach(c => {
+        if (this.arrayToDelete.includes(c._id)) c.isSelected = false
+      })
+
       this.arrayToDelete = []
       this.dialog = false
     },
     editLook () {
-      Api.saveLook(this.look._id, this.look).then(() => {
+      this.look.clothes = this.clothes
+        .filter(c => c.isSelected === true)
+        .map(c =>
+          ({
+            _id: c._id,
+            name: c.name,
+            img_url: c.img_url,
+            user: c.user,
+            cloth_type: c.cloth_type,
+            season: c.season
+          })
+        )
+      Api.saveLook(this.$route.params.id, this.look).then(() => {
         this.$router.push('/looks')
       })
     }
