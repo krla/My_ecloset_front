@@ -20,6 +20,8 @@
 
           <v-list-item to="/profile">Mi perfil</v-list-item>
 
+          <v-list-item to="/calendary">Calendario</v-list-item>
+
           <v-list-item @click="logOut()">Cerrar sesión</v-list-item>
         </v-list-item-group>
       </v-list>

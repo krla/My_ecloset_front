@@ -53,6 +53,32 @@
         </v-card>
       </v-col>
     </v-row>
+    <v-row class="mt-2" align="center" justify="center">
+      <v-col cols="10" sm="6">
+        <h3
+            class="subtitle-1 font-weight-thin mt-10"
+            align="center"
+            justify="center"
+          >Accede a tu calendario</h3>
+        <v-card elevation="10" color="#E5E5E5">
+          <v-hover v-slot:default="{ hover }">
+            <v-card class="mx-auto" color="grey lighten-4" max-width="600">
+              <v-img :aspect-ratio="16/9" src="../assets/calendario1.jpg">
+                <v-expand-transition>
+                  <div
+                    v-if="hover"
+                    class="d-flex transition-fast-in-fast-out blue-grey lighten-4 v-card--reveal display-3 black--text"
+                    style="height: 100%;"
+                  >
+                    <v-btn large dark color="blue-grey" to="/calendary">Calendario</v-btn>
+                  </div>
+                </v-expand-transition>
+              </v-img>
+            </v-card>
+          </v-hover>
+        </v-card>
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 
