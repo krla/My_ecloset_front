@@ -1,6 +1,17 @@
 <template>
   <v-row class="fill-height">
     <v-col>
+      <v-sheet height="64">
+        <v-toolbar flat color="white" >
+          <v-btn fab text small color="grey darken-2" @click="prev">
+            <v-icon small>mdi-chevron-left</v-icon>
+          </v-btn>
+          <v-btn fab text small color="grey darken-2" @click="next">
+            <v-icon small>mdi-chevron-right</v-icon>
+          </v-btn>
+        </v-toolbar>
+      </v-sheet>
+
       <v-sheet height="600">
         <v-calendar
           ref="calendar"
@@ -9,12 +20,13 @@
           :events="events"
           :event-color="getEventColor"
           :now="today"
-          type="month"
+          :type="type"
           @click:event="showEvent"
           @click:more="viewDay"
           @click:date="viewDay"
           @change="updateRange"
         ></v-calendar>
+
         <v-menu
           v-model="selectedOpen"
           :close-on-content-click="false"
@@ -70,7 +82,9 @@ export default {
     selectedEvent: {},
     selectedElement: null,
     selectedOpen: false,
-    events: []
+    events: [],
+    colors: ['blue', 'indigo', 'deep-purple', 'cyan', 'green', 'orange', 'grey darken-1'],
+    names: ['Meeting', 'Holiday', 'PTO', 'Travel', 'Event', 'Birthday', 'Conference', 'Party']
   }),
   computed: {
     title () {
